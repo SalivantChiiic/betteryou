@@ -1,0 +1,3 @@
+<view class="pagecontainer">
+  <taskslider class="taskslider"></taskslider>
+</view>

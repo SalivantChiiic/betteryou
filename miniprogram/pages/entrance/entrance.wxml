@@ -1,0 +1,27 @@
+<view class="home-container">
+	<block wx:if="{{groupsJoined.length > 0 || testGroup.length > 0}}">
+		<text>从群内分享卡片直接进入</text>
+		<text>或者从下面按钮选择</text>
+		<view class="columnwrapper">
+			<block wx:for="{{groupsJoined}}" wx:key="*this">
+				<view class="entrancewrapper" hover-class="entrancewrapperhover" hover-stay-time="100" bindtap="enterGroup" data-opengid="{{item}}">
+					<open-data type="groupName" open-gid="{{item}}" class="entrancetext"></open-data>
+				</view>
+			</block>
+			<block wx:if="{{testGroup.length > 0}}">
+				<view class="entrancewrapper" hover-class="entrancewrapperhover" hover-stay-time="100">
+					<text class="entrancetext" bindtap="enterGroup" data-opengid="grouptest">审核测试入口</text>
+				</view>
+			</block>
+		</view>
+	</block>
+	<block wx:else>
+		<text>尚未加入任何班级，点击下方按钮创建</text>
+	</block>
+	<view class="createnewgroupwrapper">
+		<text wx:if="{{groupsJoined.length > 0}}">或者创建新班级</text>
+		<view class="entrancewrapper" hover-class="entrancewrapperhover" hover-stay-time="100" bindtap="createNewGroup">
+			<text class="entrancetext">发布第一条推送</text>
+		</view>
+	</view>
+</view>

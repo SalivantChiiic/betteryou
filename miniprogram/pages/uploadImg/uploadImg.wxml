@@ -1,0 +1,133 @@
+<view class="pagecontainer">
+	<view class="imagewrapper">
+		<image class="image" src="{{imgPath}}" mode="widthFix" data-src="{{imgPath}}" bindtap="tapImg"></image>
+		<block wx:if="{{!(!requireLikes && !requireCorrectAnswer)}}">
+			<view class="imagemask">
+				<image class="maskimage" style="filter:blur({{blurLevel}}rpx);" src="{{imgPath}}" mode="widthFix" data-src="{{imgPath}}" bindtap="tapImg"></image>
+			</view>
+		</block>
+	</view>
+	<view class="avartarrowwrapper">
+		<view class="avartarnamewrapper">
+			<block wx:if="{{!hidePoster}}">
+				<image class="smallavatar" mode="cover" src="{{avatarUrl}}"></image>
+				<text class="nickname">{{nickName}}</text>
+			</block>
+			<block wx:else>
+				<image class="smallavatar" mode="cover" src="../../images/anonymous.png"></image>
+				<text class="nickname">匿名</text>
+			</block>
+		</view>
+	</view>
+	<view class="optionsrowwrapper">
+		<text>开启问答模式</text>
+		<switch color="#FCF08D" checked="{{showAddAnswerField}}" bindchange="switchAddCorrectAnswer"></switch>
+	</view>
+	<view class="commentwrapper">
+		<textarea auto-height maxlength="-1" placeholder="{{textareaplaceholder}}" value="{{inputText}}" bindinput="textInput"></textarea>
+	</view>
+	<block wx:if="{{!!showAddAnswerField}}">
+		<view class="commentwrapper">
+			<view class="optionscolumnwrapper">
+				<view class="suboptionrowwrapper">
+					<input class="answerinput" placeholder="正确答案" maxlength="20" bindinput="updateCorrectAnswer"></input>
+				</view>
+				<view class="suboptionrowwrapper">
+					<checkbox-group bindchange="switchRequireCorrectAnswer">
+						<checkbox color="#424242">不要模糊图片</checkbox>
+					</checkbox-group>
+				</view>
+			</view>
+		</view>
+	</block>
+	<view class="optionsrowwrapper">
+		<text>点赞数达标前模糊图片</text>
+		<switch color="#FCF08D" checked="{{requireLikes}}" bindchange="switchRequireLikes"></switch>
+	</view>
+	<block wx:if="{{!!requireLikes}}">
+		<view class="optionsrowwrapper">
+			<view class="optionscolumnwrapper">
+				<view class="suboptionrowwrapper">
+					<slider min="1" max="500" value="{{requireLikesNumber}}" activeColor="#D81E06" show-value bindchange="updateRequireLikesNumber"></slider>
+					<image class="likeicon" src="../../images/like.png"></image>
+				</view>
+				<text>滑动设置点赞数目</text>
+			</view>
+		</view>
+	</block>
+	<view class="optionsrowwrapper">
+		<text>匿名发送</text>
+		<switch color="#FCF08D" checked="{{hidePoster}}" bindchange="hidePoster"></switch>
+	</view>
+	<!-- <view wx:if="{{createNewGroup}}" class="optionsrowwrapper" bindtap="showGroupSettings">
+		<text>设置页面标题</text>
+		<image class="menuicon" mode="widthFix" src='../../images/next.png'></image>
+	</view> -->
+	<block wx:if="{{!(!requireLikes && !requireCorrectAnswer)}}">
+		<view class="optionsrowwrapper">
+			<view class="optionscolumnwrapper">
+				<slider min="5" max="75" value="{{blurLevel}}" activeColor="#FCF08D" show-value bindchange="updateBlurLevel"></slider>
+				<text>移动滑块调整图片到合适的模糊程度</text>
+			</view>
+		</view>
+	</block>
+	<block wx:if="{{!createNewGroup}}">
+		<button class="sharebtn" bindtap="beginUpload">发布</button>
+	</block>
+	<block wx:else>
+		<button class="sharebtn" open-type="share" bindtap="beginUpload">发布并转发到群聊对话</button>
+		<text class="notetext">转发到单人对话无效哦</text>
+	</block>
+</view>
+<!-- <swiper-item wx:if="{{showGroupSettings}}">
+		<view class="cardcontainer" style="width:{{windowWidth-40}}px; top:20px; bottom:30px;">
+			<image class="toplefttag" src="../../images/astonished.png" mode="widthFix"></image>
+			<image class="toprighttag" src="../../images/close.png" mode="widthFix" bindtap="closeGroupSettingsPage"></image>
+			<view class="groupsettingscrollview">
+				<form bindsubmit="formSubmit" bindreset="formReset">
+					<view class="settingslist">
+						<view class="rankrowwrapper">
+							<text>首页标题</text>
+							<input name="homePageTitle" maxlength="8" placeholder="班级黑板报" value="{{groupSettings.homePageTitle}}"></input>
+						</view>
+						<view class="rankrowwrapper">
+							<text>上传图片页标题</text>
+							<input name="uploadImagePageTitle" maxlength="8" placeholder="添加笔记" value="{{groupSettings.uploadImagePageTitle}}"></input>
+						</view>
+						<view class="rankrowwrapper">
+							<text>添加评论页标题</text>
+							<input name="addCommentPageTitle" maxlength="8" placeholder="添加评论" value="{{groupSettings.addCommentPageTitle}}"></input>
+						</view>
+						<view class="rankrowwrapper">
+							<text>活动日倒数页标题</text>
+							<input name="anniversariesPageTitle" maxlength="8" placeholder="活动日" value="{{groupSettings.anniversariesPageTitle}}"></input>
+						</view>
+						<view class="rankrowwrapper">
+							<text>活动日添加页标题</text>
+							<input name="addAnniversaryPageTitle" maxlength="8" placeholder="添加活动日" value="{{groupSettings.addAnniversaryPageTitle}}"></input>
+						</view>
+						<view class="rankrowwrapper">
+							<text>能量排名页标题</text>
+							<input name="rankPageTitle" maxlength="8" placeholder="能量排名" value="{{groupSettings.rankPageTitle}}"></input>
+						</view>
+						<view class="rankrowwrapper">
+							<text>我的主页标题</text>
+							<input name="profilePageTitle" maxlength="8" placeholder="我的主页" value="{{groupSettings.profilePageTitle}}"></input>
+						</view>
+						<view class="rankrowwrapper">
+							<text>能量名称</text>
+							<input name="userPointsTitle" maxlength="8" placeholder="总能量" value="{{groupSettings.userPointsTitle}}"></input>
+						</view>
+						<view class="submitresetwrapper">
+							<view class="rankrowwrapper">
+								<button class="submitbtn" formType="submit">完成</button>
+							</view>
+							<view class="rankrowwrapper">
+								<button class="resetbtn" formType="reset">重置</button>
+							</view>
+						</view>
+					</view>
+				</form>
+			</view>
+		</view>
+	</swiper-item> -->

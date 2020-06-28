@@ -1,0 +1,216 @@
+page {
+  background-color: #d9d9d9;
+}
+
+swiper{
+  position: fixed;
+  width: 100%;
+  top: 0;
+  height: 89%;
+}
+
+swiper-item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardcontainer {
+  background-color: #ffffff;
+  position: absolute;
+  border-radius: 25rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-shadow: 3rpx 6rpx 30rpx -5rpx #00000033, -3rpx -2rpx 30rpx -5rpx #00000033;
+  width: 100%;
+}
+
+.toplefttag {
+  position: absolute;
+  left: 20rpx;
+  top: 20rpx;
+  width: 50rpx;
+}
+
+.toprighttag {
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  width: 50rpx;
+}
+
+.avatarimg {
+  width: 140rpx;
+  height: 140rpx;
+  margin-top: 110rpx;
+  margin-bottom: 20rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.nickNameText {
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-bottom: 40rpx;
+}
+
+text{
+  font-size: 28rpx;
+}
+
+.grey{
+  font-size: 24rpx;
+  color: #666666;
+}
+
+.scorerowwrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 30rpx;
+  margin-bottom: 60rpx;
+}
+
+.columnwrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.scoretitle {
+  font-size: 24rpx;
+  color: #666666;
+  margin-bottom: 5rpx;
+}
+
+.scorevalue {
+  font-size: 60rpx;
+  font-weight: bolder;
+  background-color: rgb(251, 215, 50);
+  border: 2rpx solid #424242;
+  padding: 0 20rpx;
+  border-radius: 10rpx;
+}
+
+.rowwrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  margin-top: 30rpx;
+}
+
+.menu{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.menuicon{
+  width: 50rpx;
+}
+
+.ranklist{
+  margin-top: 60rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.rankrowwrapper{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin-bottom: 30rpx;
+}
+
+.ranktext{
+  font-size: 35rpx;
+  font-weight: bold;
+}
+
+.rankpoints{
+  font-size: 45rpx;
+  font-weight: bolder;
+  background-color: rgb(251, 215, 50);
+  border: 2rpx solid #424242;
+  padding: 0 20rpx;
+  border-radius: 10rpx;
+}
+
+input{
+  width: 40%;
+  text-align: center;
+  font-size: 28rpx;
+  border: 2rpx solid #424242;
+  padding: 0 20rpx;
+  border-radius: 10rpx;
+}
+
+.rankavatar{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 10rpx;
+  border: 2rpx solid #424242;
+  margin: 0 20rpx;
+}
+
+.submitresetwrapper{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  bottom: 0;
+}
+
+.submitbtn{
+  width: 90% !important;
+  background-color: rgb(251, 215, 50);
+  border: 2rpx solid #424242;
+  padding: 0 20rpx;
+  border-radius: 30rpx;
+  box-shadow: 3rpx 6rpx 30rpx -5px #FCF08D, -3rpx -2rpx 30rpx -5rpx #FCF08D;
+}
+
+.resetbtn{
+  font-size: 28rpx;
+  color: #666666;
+  width: 30% !important;
+  padding: 0 20rpx;
+}
+
+.scrollview {
+  margin-top: 60rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.groupsettingscrollview {
+  margin-top: 60rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 80%;
+  overflow-y: scroll;
+}

@@ -1,0 +1,3 @@
+<view class="componentwrapper" catchtouchstart="onTouchStart" catchtouchend="onTouchEnd" catchtouchmove="onTouchMove">
+  <view class="sliderview" style="right:{{sliderPos}}%;"></view>
+</view>

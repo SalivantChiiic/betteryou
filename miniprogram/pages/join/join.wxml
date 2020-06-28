@@ -1,0 +1,24 @@
+<view class="home-container">
+
+	<block wx:if="{{friendsJoined.length > 0}}">
+		<text wx:if="{{friendsJoined.length == 1}}">下面这名同学比你先到</text>
+		<text wx:else>下面这些同学已经比你先到啦</text>
+		<view class="avatarrowwrapper">
+			<block wx:for="{{friendsJoined}}" wx:key="avatarUrl">
+				<image class="avatarimg" mode="cover" src="{{item.avatarUrl}}"></image>
+			</block>
+		</view>
+	</block>
+	<block wx:else>
+		<text>我们需要你的授权
+		先到的人可以做班长</text>
+	</block>
+
+	<view class="authbtnwrapper">
+		<view class="avatarrowwrapper">
+			<open-data class="avatarimg" type="userAvatarUrl"></open-data>
+			<open-data type="userNickName"></open-data>
+		</view>
+		<button class="authbtn" open-type="getUserInfo" bindgetuserinfo="receiveUserInfo">现在加入</button>
+	</view>
+</view>

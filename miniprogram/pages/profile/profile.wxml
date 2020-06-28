@@ -1,0 +1,127 @@
+<swiper indicator-dots bindchange="onSwiperChanged" duration="200" current="{{swiperIndex}}">
+	<swiper-item>
+		<view class="cardcontainer" style="width:{{windowWidth-40}}px; top:20px; bottom:30px;">
+			<image class="toplefttag" src="../../images/cool.png" mode="widthFix"></image>
+			<view class="scrollview">
+				<view class="ranklist">
+					<block wx:for="{{groupMembers}}" wx:key="_id">
+						<view class="rankrowwrapper">
+							<view class="menu">
+								<image class="menuicon" mode="widthFix" src="../../images/hashtag.png"></image>
+								<text class="ranktext">{{index + 1}}</text>
+								<image class="rankavatar" src="{{item.avatarUrl}}"></image>
+								<text>{{item.nickName}}</text>
+							</view>
+							<view class="menu">
+								<text class="rankpoints">{{!item.points?0:item.points}}</text>
+							</view>
+						</view>
+					</block>
+				</view>
+			</view>
+		</view>
+	</swiper-item>
+	<swiper-item>
+		<view class="cardcontainer" style="width:{{windowWidth-40}}px; top:20px; bottom:30px;">
+			<image class="toplefttag" src="../../images/rainbow.png" mode="widthFix"></image>
+			<open-data class="avatarimg" type="userAvatarUrl"></open-data>
+			<open-data class="nickNameText" type="userNickName"></open-data>
+			<view class="scorerowwrapper">
+				<view class="columnwrapper">
+					<text class="scoretitle">{{userPointsTitle}}</text>
+					<text class="scorevalue">{{userInfo.points}}</text>
+				</view>
+				<view class="columnwrapper">
+					<text class="scoretitle">睿智能量</text>
+					<text class="scorevalue">0</text>
+				</view>
+			</view>
+			<view class="rowwrapper" bindtap="showRanking">
+				<view class="menu">
+					<image class="menuicon" mode="widthFix" src="../../images/hashtag.png"></image>
+					<text>能量排名</text>
+				</view>
+				<view class="menu">
+					<text class="grey">查看排名</text>
+					<image class="menuicon" mode="widthFix" src="../../images/next.png"></image>
+				</view>
+			</view>
+			<view class="rowwrapper" bindtap="showGroupSettings">
+				<view class="menu">
+					<image class="menuicon" mode="widthFix" src="../../images/egg.png"></image>
+					<text>页面标题定制</text>
+				</view>
+				<view class="menu">
+					<text class="grey">发挥想象</text>
+					<image class="menuicon" mode="widthFix" src="../../images/next.png"></image>
+				</view>
+			</view>
+			<view class="rowwrapper" bindtap="switchEntrances">
+				<view class="menu">
+					<image class="menuicon" mode="widthFix" src="../../images/lightning.png"></image>
+					<text>切换入口</text>
+				</view>
+				<view class="menu">
+					<text class="grey">进入其它群组</text>
+					<image class="menuicon" mode="widthFix" src="../../images/next.png"></image>
+				</view>
+			</view>
+		</view>
+	</swiper-item>
+	<swiper-item wx:if="{{showGroupSettings}}">
+		<view class="cardcontainer" style="width:{{windowWidth-40}}px; top:20px; bottom:30px;">
+			<image class="toplefttag" src="../../images/astonished.png" mode="widthFix"></image>
+			<image class="toprighttag" src="../../images/close.png" mode="widthFix" bindtap="closeGroupSettingsPage"></image>
+			<view class="groupsettingscrollview">
+				<form bindsubmit="formSubmit" bindreset="formReset">
+					<view class="ranklist">
+						<view class="rankrowwrapper">
+							<text>首页标题</text>
+							<input name="homePageTitle" maxlength="8" placeholder="班级黑板报" value="{{groupSettings.homePageTitle}}"></input>
+						</view>
+						<view class="rankrowwrapper">
+							<text>上传图片页标题</text>
+							<input name="uploadImagePageTitle" maxlength="8" placeholder="添加笔记" value="{{groupSettings.uploadImagePageTitle}}"></input>
+						</view>
+						<view class="rankrowwrapper">
+							<text>上传图片页输入框文本</text>
+							<input name="uploadImagePageInputPlaceHolder" maxlength="8" placeholder="分享你的思考" value="{{groupSettings.uploadImagePageInputPlaceHolder}}"></input>
+						</view>
+						<view class="rankrowwrapper">
+							<text>添加评论页标题</text>
+							<input name="addCommentPageTitle" maxlength="8" placeholder="添加评论" value="{{groupSettings.addCommentPageTitle}}"></input>
+						</view>
+						<view class="rankrowwrapper">
+							<text>活动日倒数页标题</text>
+							<input name="anniversariesPageTitle" maxlength="8" placeholder="活动日" value="{{groupSettings.anniversariesPageTitle}}"></input>
+						</view>
+						<view class="rankrowwrapper">
+							<text>活动日添加页标题</text>
+							<input name="addAnniversaryPageTitle" maxlength="8" placeholder="添加活动日" value="{{groupSettings.addAnniversaryPageTitle}}"></input>
+						</view>
+						<view class="rankrowwrapper">
+							<text>能量排名页标题</text>
+							<input name="rankPageTitle" maxlength="8" placeholder="能量排名" value="{{groupSettings.rankPageTitle}}"></input>
+						</view>
+						<view class="rankrowwrapper">
+							<text>我的主页标题</text>
+							<input name="profilePageTitle" maxlength="8" placeholder="我的主页" value="{{groupSettings.profilePageTitle}}"></input>
+						</view>
+						<view class="rankrowwrapper">
+							<text>能量名称</text>
+							<input name="userPointsTitle" maxlength="8" placeholder="总能量" value="{{groupSettings.userPointsTitle}}"></input>
+						</view>
+						<view class="submitresetwrapper">
+							<view class="rankrowwrapper">
+								<button class="submitbtn" formType="submit">提交</button>
+							</view>
+							<view class="rankrowwrapper">
+								<button class="resetbtn" formType="reset">重置</button>
+							</view>
+						</view>
+					</view>
+				</form>
+			</view>
+		</view>
+	</swiper-item>
+</swiper>

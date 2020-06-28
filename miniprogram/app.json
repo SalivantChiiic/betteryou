@@ -1,0 +1,40 @@
+{
+  "pages": [
+    "pages/dailytasks/dailytasks",
+    "pages/index/index",
+    "pages/join/join",
+    "pages/topic/topic",
+    "pages/uploadImg/uploadImg",
+    "pages/comments/comments",
+    "pages/anniversaries/anniversaries",
+    "pages/addAnniversary/addAnniversary",
+    "pages/error/loginfailed",
+    "pages/entrance/entrance",
+    "pages/profile/profile",
+    "pages/closeMiniProgram/closeMiniProgram"
+  ],
+  "window": {
+    "backgroundColor": "#FFFFFF",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F9F9F9",
+    "navigationBarTitleText": "群里有人黑你",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "tabBar": {
+    "custom": true,
+    "backgroundColor": "#F9F9F9",
+    "list": [
+      {
+        "pagePath": "pages/dailytasks/dailytasks"
+      },
+      {
+        "pagePath": "pages/anniversaries/anniversaries"
+      },
+      {
+        "pagePath": "pages/profile/profile"
+      }
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+<view class="home-container">
+	<view class="imagewrapper" bindtap="chooseImage">
+		<view wx:if="{{!imagePath || imagePath.length == 0}}" class="noimage"></view>
+		<block wx:else>
+			<image class="image" src="{{imagePath}}" mode="widthFix"></image>
+			<view class="imagemask"></view>
+		</block>
+		<text class="imgtext">{{imgTitle}}
+		{{date}}</text>
+	</view>
+	<view class="memodaterowrapper">
+		<input auto-height maxlength="13" placeholder="活动日标题(必填)" value="{{title}}" bindinput="titleInput"></input>
+	</view>
+	<view class="memodaterowrapper">
+		<picker class="picker" mode="date" start="{{startDate}}" bindchange="bindDateChange" value="{{date}}">
+			<view wx:if="{{date.length == 0}}" class="unselecteddatetext">
+				活动日日期
+			</view>
+			<view wx:else>
+				活动日日期：{{date}}
+			</view>
+		</picker>
+	</view>
+	<view class="memodaterowrapper">
+		<input auto-height maxlength="-1" placeholder="备注内容(非必填)" value="{{content}}" bindinput="contentInput"></input>
+	</view>
+	<view class="avartarrowwrapper">
+		<view class="avartarnamewrapper">
+			<text class="creatortext">创建者:</text>
+			<image class="smallavatar" mode="cover" src="{{avatarUrl}}"></image>
+		</view>
+	</view>
+	<view class="uploadbtnwrapper" bindtap="beginUpload" hover-class="hoveruploadbtn" hover-stay-time="100">
+		<image src="../../images/lightning.png" mode="widthFix"></image>
+	</view>
+</view>

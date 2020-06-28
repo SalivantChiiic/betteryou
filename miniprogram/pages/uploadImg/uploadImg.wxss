@@ -1,0 +1,304 @@
+.imagewrapper {
+  position: relative;
+  display: flex;
+  margin: 90rpx 0 10rpx 0;
+  align-items: center;
+  justify-content: center;
+  width: 94%;
+}
+
+.image {
+  width: 100%;
+  border-radius: 25rpx;
+  box-shadow: 3rpx 6rpx 30rpx -5rpx #00000050, -3rpx -2rpx 30rpx -5rpx #00000050;
+}
+
+.imagemask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 25rpx;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #808080;
+}
+
+.maskimage {
+  border-radius: 25rpx;
+  width: 100%;
+  filter: blur(35rpx);
+  transform: scale(1.2, 1.2);
+}
+
+.menuicon {
+  width: 50rpx;
+}
+
+.likeicon {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.avartarrowwrapper {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 30rpx;
+}
+
+.optionsrowwrapper {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+}
+
+.optionscolumnwrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40rpx;
+}
+
+.suboptionrowwrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 10rpx 0;
+}
+
+.avartarnamewrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 50%;
+}
+
+.smallavatar {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  background-size: cover;
+  background-color: white;
+  overflow: hidden;
+}
+
+.nickname {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #424242;
+  text-align: left;
+  margin-left: 5px;
+}
+
+text {
+  font-size: 28rpx;
+  color: #424242;
+}
+
+checkbox {
+  font-size: 28rpx;
+  color: #424242;
+}
+
+slider {
+  width: 85%;
+}
+
+.textbtn {
+  font-size: 28rpx;
+  color: #424242;
+  text-align: right;
+  margin-right: 60rpx;
+}
+
+input {
+  width: 40%;
+  text-align: center;
+  font-size: 28rpx;
+  border: 2rpx solid #424242;
+  padding: 0 20rpx;
+  border-radius: 10rpx;
+}
+
+.answerinput {
+  width: 100%;
+  border: 2rpx solid #D9D9D9;
+  border-radius: 20rpx;
+  padding: 10rpx 30rpx;
+  text-align: left;
+}
+
+.commentwrapper {
+  margin: 20rpx 40rpx 0 40rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 90%;
+  align-items: center;
+}
+
+textarea {
+  width: 100%;
+  border: 2rpx solid #D9D9D9;
+  border-radius: 20rpx;
+  padding: 10rpx 30rpx;
+}
+
+.comments {
+  font-size: 28rpx;
+  color: #222222;
+  margin-right: 20rpx;
+}
+
+.uploadbtnwrapper {
+  border-radius: 50%;
+  position: fixed;
+  bottom: 80rpx;
+  background: linear-gradient(#FCF08D, #FFDE85);
+  width: 120rpx;
+  height: 120rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 3rpx 6rpx 30rpx -5px #FCF08D, -3rpx -2rpx 30rpx -5rpx #FCF08D;
+}
+
+.hoveruploadbtn {
+  bottom: 37rpx;
+  background-color: rgba(252, 241, 141, 0.644);
+}
+
+.uploadbtnwrapper image {
+  width: 60rpx;
+}
+
+.sharebtn {
+  margin-top: 50rpx;
+  margin-bottom: 50rpx;
+  border-radius: 30rpx;
+  background-color: rgb(251, 216, 49);
+  box-shadow: 3rpx 6rpx 30rpx 1rpx rgb(251, 216, 49);
+  border: 2rpx solid #424242;
+  width: 80% !important;
+  min-height: 80rpx !important;
+}
+
+.notetext {
+  margin-bottom: 80rpx;
+}
+
+.pagecontainer {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.toplefttag {
+  position: absolute;
+  left: 20rpx;
+  top: 20rpx;
+  width: 50rpx;
+}
+
+.toprighttag {
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  width: 50rpx;
+}
+
+text {
+  font-size: 28rpx;
+}
+
+.groupsettingscrollview {
+  margin-top: 60rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 80%;
+}
+
+.settingslist {
+  margin-top: 60rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.rankrowwrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin-bottom: 30rpx;
+}
+
+.ranktext {
+  font-size: 35rpx;
+  font-weight: bold;
+}
+
+.rankpoints {
+  font-size: 45rpx;
+  font-weight: bolder;
+  background-color: rgb(251, 215, 50);
+  border: 2rpx solid #424242;
+  padding: 0 20rpx;
+  border-radius: 10rpx;
+}
+
+.rankavatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 10rpx;
+  border: 2rpx solid #424242;
+  margin: 0 20rpx;
+}
+
+.submitresetwrapper {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  bottom: 0;
+}
+
+.submitbtn {
+  width: 90% !important;
+  background-color: rgb(251, 215, 50);
+  border: 2rpx solid #424242;
+  padding: 0 20rpx;
+  border-radius: 30rpx;
+  box-shadow: 3rpx 6rpx 30rpx -5px #FCF08D, -3rpx -2rpx 30rpx -5rpx #FCF08D;
+}
+
+.resetbtn {
+  font-size: 28rpx;
+  color: #666666;
+  width: 30% !important;
+  padding: 0 20rpx;
+}
