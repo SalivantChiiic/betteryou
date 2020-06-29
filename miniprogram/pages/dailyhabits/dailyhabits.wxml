@@ -1,0 +1,5 @@
+<view class="pagecontainer">
+	<taskslider class="taskslider" habitValue="15" habitName="跑步" habitUnit="分钟" imgUrl="../../images/check.png" color="#b5c4b1"></taskslider>
+	<taskslider class="taskslider" habitValue="8" habitName="喝水" habitUnit="杯" imgUrl="../../images/check.png" color="#965454"></taskslider>
+	<taskslider class="taskslider" habitValue="1" habitName="早起" imgUrl="../../images/check.png" color="#ead0d1"></taskslider>
+</view>

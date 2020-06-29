@@ -1,3 +1,16 @@
-<view class="componentwrapper" catchtouchstart="onTouchStart" catchtouchend="onTouchEnd" catchtouchmove="onTouchMove">
-  <view class="sliderview" style="right:{{sliderPos}}%;"></view>
+<view class="componentwrapper" style="background-color:{{color}}99;" catchtouchstart="onTouchStart" catchtouchend="onTouchEnd" catchtouchmove="onTouchMove">
+	<view class="sliderview" style="width:{{sliderPos}}%;background-color:{{color}};"></view>
+	<view class="iconnamerow">
+		<image class="icon" mode="widthFix" src="{{imgUrl}}"></image>
+		<text class="txt">{{habitName}}</text>
+	</view>
+	<view class="valueunitrow">
+		<block wx:if="{{!isDone}}">
+			<text class="txt">{{currentStep}}</text>
+			<text class="txt" wx:if="{{habitUnit.length > 0}}">{{habitUnit}}</text>
+		</block>
+		<block wx:else>
+			<image class="icon" mode="widthFix" src="../../images/complete.png"></image>
+		</block>
+	</view>
 </view>

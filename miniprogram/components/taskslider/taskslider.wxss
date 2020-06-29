@@ -5,13 +5,48 @@
   background-color: rgb(73, 170, 49, 0.5);
   overflow: hidden;
   position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .sliderview {
   position: absolute;
   background-color: rgb(73, 179, 49);
   top: 0;
-  right: 20%;
+  left: 0;
   height: 100%;
-  width: 100%;
+  width: 20%;
+  z-index: 0;
+}
+
+.iconnamerow {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 50%;
+  margin-left: 40rpx;
+  z-index: 1;
+}
+
+.valueunitrow {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: 40%;
+  margin-right: 40rpx;
+  z-index: 1;
+}
+
+.icon {
+  width: 60rpx;
+  height: 60rpx;
+  margin: 10rpx;
+}
+
+.txt {
+  margin: 10rpx;
 }

@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/dailytasks/dailytasks",
+    "pages/dailyhabits/dailyhabits",
     "pages/index/index",
     "pages/join/join",
     "pages/topic/topic",
@@ -17,7 +17,7 @@
     "backgroundColor": "#FFFFFF",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F9F9F9",
-    "navigationBarTitleText": "群里有人黑你",
+    "navigationBarTitleText": "更好的你",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
@@ -27,7 +27,7 @@
     "backgroundColor": "#F9F9F9",
     "list": [
       {
-        "pagePath": "pages/dailytasks/dailytasks"
+        "pagePath": "pages/dailyhabits/dailyhabits"
       },
       {
         "pagePath": "pages/anniversaries/anniversaries"

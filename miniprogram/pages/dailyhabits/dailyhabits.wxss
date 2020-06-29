@@ -8,4 +8,5 @@
 
 .taskslider{
   width: 90%;
+  margin: 20rpx 0;
 }

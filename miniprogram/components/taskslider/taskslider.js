@@ -1,7 +1,5 @@
-var startPoint
-var endPoint
-var screenWidth
 const app = getApp()
+var screenWidth
 Component({
   /**
    * Component properties
@@ -10,18 +8,27 @@ Component({
     imgUrl: String,
     habitName: String,
     habitValue: Number,
-    habitUnit: String
+    habitUnit: String,
+    color: String
   },
 
   /**
    * Component initial data
    */
   data: {
-    sliderPos: 100
+    startPoint: 0,
+    sliderStepScale: 0,
+    stepWidth: 0,
+    currentStep: 0,
+    lastStep: 0,
+    sliderPos: 0,
+    isDone: false,
   },
   lifetimes: {
     attached() {
-      screenWidth = app.globalData.systemInfo.screenWidth
+      screenWidth = app.globalData.systemInfo.screenWidth * 0.4
+      this.data.sliderStepScale = 100 / this.properties.habitValue
+      this.data.stepWidth = screenWidth * this.data.sliderStepScale / 100
     }
   },
   /**
@@ -29,18 +36,34 @@ Component({
    */
   methods: {
     onTouchMove(e) {
-      let posValue = this.data.sliderPos - ((e.touches[e.touches.length - 1].clientX - startPoint.clientX) / screenWidth * 100)
-      if (posValue >= 0 && posValue <= 100 && posValue != this.data.sliderPos) {
+      let moveDistance = e.touches[e.touches.length - 1].clientX - this.data.startPoint.clientX
+      if (moveDistance < 0) {
+        moveDistance = 0
+      }
+      let step = Math.round(moveDistance / this.data.stepWidth)
+      step += this.data.lastStep
+      let newSliderPos = moveDistance / screenWidth * 100
+      newSliderPos += this.data.sliderStepScale * this.data.lastStep
+      this.setData({
+        sliderPos: newSliderPos
+      })
+      if (this.data.currentStep != step && step >= 0 && step <= this.properties.habitValue) {
         this.setData({
-          sliderPos: posValue
+          isDone: step == this.properties.habitValue,
+          currentStep: step
         })
+        // wx.vibrateShort()
       }
     },
     onTouchStart(e) {
-      startPoint = e.touches[0]
+      this.data.startPoint = e.touches[0]
     },
-    onTouchEnd(e) {
-      endPoint = e.touches[0]
+    onTouchEnd() {
+      let endSliderPos = this.data.sliderStepScale * this.data.currentStep
+      this.setData({
+        sliderPos: endSliderPos
+      })
+      this.data.lastStep = this.data.currentStep
     }
   }
 })
