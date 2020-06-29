@@ -1,6 +1,19 @@
 //app.js
+
+const cn = require('./languages/zh-cn.js')
+const en = require('./languages/en.js')
 App({
   onLaunch: function (options) {
+    this.globalData = {}
+    // Sets language of this program.
+    let res = wx.getSystemInfoSync()
+    if (res.language.indexOf('zh') >= 0) {
+      this.globalData.displayInEnglish = false
+      this.globalData.locale = cn.default
+    } else {
+      this.globalData.displayInEnglish = true
+      this.globalData.locale = en.default
+    }
 
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
@@ -14,7 +27,6 @@ App({
         traceUser: true,
       })
     }
-    this.globalData = {}
   },
   onShow: function (options) {
     console.log('this.data.scene = ' + options.scene)

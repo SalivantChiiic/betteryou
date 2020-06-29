@@ -1,0 +1,55 @@
+@import '../../style/common.wxss';
+
+.rowwrapper {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 30rpx 0;
+}
+
+.colorrow {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.largelabel {
+  font-size: var(--extraLargeFontSize);
+}
+
+.label {
+  font-size: var(--largeFontSize);
+  margin-right: 30rpx;
+}
+
+input {
+  border: 1px solid var(--borderColor);
+  border-radius: 15rpx;
+  width: 80%;
+  padding: 20rpx 30rpx;
+}
+
+.shortinput {
+  width: 20%;
+  padding: 5rpx 10rpx;
+  margin-right: 40rpx
+}
+
+.colorbtn {
+  border-radius: 50%;
+  width: 60rpx;
+  height: 60rpx;
+  overflow: hidden;
+  margin-right: 60rpx;
+  margin-bottom: 30rpx;
+}
+
+.taskslider {
+  width: 90%;
+  margin: 20rpx 0;
+}

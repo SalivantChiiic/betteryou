@@ -1,0 +1,9 @@
+Page {
+  min-height: 100%;
+  --borderColor: rgb(38, 60, 87);
+
+  --extraLargeFontSize: 45rpx;
+  --largeFontSize: 32rpx;
+  --mediumFontSize: 28rpx;
+  --smallFontSize: 25rpx;
+}

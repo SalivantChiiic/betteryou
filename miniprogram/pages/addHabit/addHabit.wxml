@@ -1,0 +1,21 @@
+<view class="container">
+	<view class="rowwrapper">
+		<text class="largelabel">{{locale.name}}</text>
+	</view>
+	<input placeholder="{{locale.namePlaceHolder}}" bindinput="inputName"></input>
+	<view class="rowwrapper">
+		<text class="label">{{locale.goal}}</text>
+		<input class="shortinput" placeholder="{{locale.goalPlaceHolder}}" bindinput="inputGoal"></input>
+		<text class="label">{{locale.unit}}</text>
+		<input class="shortinput" placeholder="{{locale.unitPlaceHolder}}" bindinput="inputUnit"></input>
+	</view>
+	<view class="rowwrapper">
+		<text class="largelabel">{{locale.color}}</text>
+	</view>
+	<view class="colorrow">
+		<block wx:for="{{colors}}" wx:key="*this">
+			<view class="colorbtn" style="background-color:{{item}}" data-color="{{item}}" bindtap="selectColor"></view>
+		</block>
+	</view>
+	<taskslider class="taskslider" habitGoal="{{goal}}" habitUnit="{{unit}}" sliderPos="70" habitName="{{name}}" imgUrl="../../images/check.png" color="{{selectedColor}}"></taskslider>
+</view>

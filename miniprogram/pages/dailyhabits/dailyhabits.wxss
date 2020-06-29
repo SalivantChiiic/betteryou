@@ -10,3 +10,7 @@
   width: 90%;
   margin: 20rpx 0;
 }
+
+.addicon {
+  width: 40rpx;
+}

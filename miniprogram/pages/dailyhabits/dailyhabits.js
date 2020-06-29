@@ -56,4 +56,9 @@ Page({
       }
     })
   },
+  addHabit() {
+    wx.navigateTo({
+      url: '../addHabit/addHabit',
+    })
+  }
 })

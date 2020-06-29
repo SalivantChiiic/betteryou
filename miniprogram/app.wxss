@@ -3,17 +3,26 @@ page{
   height: initial;
   min-height: 100%;
   background-color: #fff;
-
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: center;
 }
+
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-sizing: border-box;
+  justify-content: flex-start;
+  width: 100%;
 } 
+
+.rowwrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
 
 button {
   background: initial;

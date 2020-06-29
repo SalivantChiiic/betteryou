@@ -7,9 +7,10 @@ Component({
   properties: {
     imgUrl: String,
     habitName: String,
-    habitValue: Number,
+    habitGoal: Number,
     habitUnit: String,
-    color: String
+    color: String,
+    sliderPos: Number
   },
 
   /**
@@ -27,7 +28,7 @@ Component({
   lifetimes: {
     attached() {
       screenWidth = app.globalData.systemInfo.screenWidth * 0.4
-      this.data.sliderStepScale = 100 / this.properties.habitValue
+      this.data.sliderStepScale = 100 / this.properties.habitGoal
       this.data.stepWidth = screenWidth * this.data.sliderStepScale / 100
     }
   },
@@ -39,20 +40,23 @@ Component({
       let moveDistance = e.touches[e.touches.length - 1].clientX - this.data.startPoint.clientX
       if (moveDistance < 0) {
         moveDistance = 0
+        if (this.data.sliderPos == 0) {
+          return
+        }
       }
-      let step = Math.round(moveDistance / this.data.stepWidth)
-      step += this.data.lastStep
       let newSliderPos = moveDistance / screenWidth * 100
       newSliderPos += this.data.sliderStepScale * this.data.lastStep
       this.setData({
         sliderPos: newSliderPos
       })
-      if (this.data.currentStep != step && step >= 0 && step <= this.properties.habitValue) {
+      let step = Math.round(moveDistance / this.data.stepWidth)
+      step += this.data.lastStep
+      if (this.data.currentStep != step && step >= 0 && step <= this.properties.habitGoal) {
         this.setData({
-          isDone: step == this.properties.habitValue,
+          isDone: step == this.properties.habitGoal,
           currentStep: step
         })
-        // wx.vibrateShort()
+        wx.vibrateShort()
       }
     },
     onTouchStart(e) {

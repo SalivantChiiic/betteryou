@@ -7,11 +7,11 @@
     "pages/uploadImg/uploadImg",
     "pages/comments/comments",
     "pages/anniversaries/anniversaries",
-    "pages/addAnniversary/addAnniversary",
     "pages/error/loginfailed",
     "pages/entrance/entrance",
     "pages/profile/profile",
-    "pages/closeMiniProgram/closeMiniProgram"
+    "pages/closeMiniProgram/closeMiniProgram",
+    "pages/addHabit/addHabit"
   ],
   "window": {
     "backgroundColor": "#FFFFFF",
