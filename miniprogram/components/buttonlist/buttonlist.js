@@ -65,7 +65,7 @@ Component({
       let selectedItems = []
       for (let i in this.data.buttonStates) {
         if (this.data.buttonStates[i]) {
-          selectedItems.push(this.properties.buttonList[i])
+          selectedItems.push(this.properties.buttonList[i].id)
         }
       }
       var eventDetail = {

@@ -10,7 +10,8 @@ Component({
     habitGoal: Number,
     habitUnit: String,
     color: String,
-    goalPeriod: String
+    goalPeriod: String,
+    currentProgress: Number
   },
 
   /**
@@ -30,6 +31,8 @@ Component({
       screenWidth = app.globalData.systemInfo.screenWidth * 0.4
       this.data.sliderStepScale = 100 / this.properties.habitGoal
       this.data.stepWidth = screenWidth * this.data.sliderStepScale / 100
+      this.data.currentStep = this.properties.currentProgress
+      this.updateProgress()
     }
   },
   /**
@@ -63,9 +66,14 @@ Component({
       this.data.startPoint = e.touches[0]
     },
     onTouchEnd() {
+      this.updateProgress()
+    },
+    updateProgress() {
       let endSliderPos = this.data.sliderStepScale * this.data.currentStep
       this.setData({
-        sliderPos: endSliderPos
+        sliderPos: endSliderPos,
+        isDone: this.data.currentStep >= this.properties.habitGoal,
+        currentStep: this.data.currentStep
       })
       this.data.lastStep = this.data.currentStep
     }

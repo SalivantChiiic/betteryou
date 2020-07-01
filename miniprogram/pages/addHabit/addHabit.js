@@ -8,9 +8,6 @@ Page({
   data: {
     locale: app.globalData.locale.addHabit,
     selectedColor: '#c1cbd7',
-    name: '',
-    goal: 10,
-    unit: '',
     colors: [
       '#c1cbd7',
       '#afb0b2',
@@ -48,45 +45,87 @@ Page({
       '#c9c0d3',
       '#eee5f8'
     ],
-    goalPeriod: [app.globalData.locale.addHabit.daily, app.globalData.locale.addHabit.weekly, app.globalData.locale.addHabit.monthly, app.globalData.locale.addHabit.yearly],
-    trackDays: [app.globalData.locale.addHabit.sun, app.globalData.locale.addHabit.mon, app.globalData.locale.addHabit.tue, app.globalData.locale.addHabit.wed, app.globalData.locale.addHabit.thu, app.globalData.locale.addHabit.fri, app.globalData.locale.addHabit.sat]
+    goalPeriod: [{
+        id: 'daily',
+        value: app.globalData.locale.addHabit.daily
+      },
+      {
+        id: 'weekly',
+        value: app.globalData.locale.addHabit.weekly
+      },
+      {
+        id: 'monthly',
+        value: app.globalData.locale.addHabit.monthly
+      },
+      {
+        id: 'yearly',
+        value: app.globalData.locale.addHabit.yearly
+      }
+    ],
+    trackDays: [{
+        id: 'sun',
+        value: app.globalData.locale.addHabit.sun
+      },
+      {
+        id: 'mon',
+        value: app.globalData.locale.addHabit.mon
+      },
+      {
+        id: 'tue',
+        value: app.globalData.locale.addHabit.tue
+      },
+      {
+        id: 'wed',
+        value: app.globalData.locale.addHabit.wed
+      },
+      {
+        id: 'thu',
+        value: app.globalData.locale.addHabit.thu
+      },
+      {
+        id: 'fri',
+        value: app.globalData.locale.addHabit.fri
+      },
+      {
+        id: 'sat',
+        value: app.globalData.locale.addHabit.sat
+      }
+    ],
+    habitToCreate: {}
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-
+    let randomIndex = Math.round(Math.random() * 10)
   },
   selectColor(e) {
     this.setData({
       selectedColor: e.currentTarget.dataset.color
     })
+    this.data.habitToCreate.color = this.data.selectedColor
   },
   inputName(e) {
-    this.setData({
-      name: e.detail.value
-    })
+    this.data.habitToCreate.name = e.detail.value
   },
   inputGoal(e) {
-    this.setData({
-      goal: Number(e.detail.value)
-    })
+    this.data.habitToCreate.goal = e.detail.value
   },
   inputUnit(e) {
-    this.setData({
-      unit: e.detail.value
-    })
-  },
-  updateTrackDays(e) {
-    debugger
-    e.detail
+    this.data.habitToCreate.unit = e.detail.value
   },
   updateGoalPeriod(e) {
-    debugger
-    e.detail
+    this.data.habitToCreate.goalPeriod = e.detail.selectedItems
+  },
+  updateTrackDays(e) {
+    this.data.habitToCreate.trackDays = e.detail.selectedItems
+  },
+  inputMotivateNotes(e) {
+    this.data.habitToCreate.motivateNotes = e.detail.value
   },
   saveHabit() {
+    this.data.habitToCreate.createDate = Date.now()
     wx.navigateBack({
       delta: 0,
     })
