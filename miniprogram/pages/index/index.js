@@ -17,7 +17,7 @@ Page({
     imgSecCheck: true,
     showCensoredImg: false
   },
-  onLoad: async function (options) {
+  onLoad1: async function (options) {
     await this.manageLocalStorage(false)
     wx.showShareMenu({
       withShareTicket: true

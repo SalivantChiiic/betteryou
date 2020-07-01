@@ -5,14 +5,9 @@ Component({
     color: "#7A7E83",
     selectedColor: "#3cc51f",
     list: [{
-      pagePath: "/pages/dailytasks/dailytasks",
+      pagePath: "/pages/dailyHabits/dailyHabits",
       iconPath: "/images/home.png",
       selectedIconPath: "/images/home2.png",
-    },
-    {
-      pagePath: "/pages/anniversaries/anniversaries",
-      iconPath: "/images/star.png",
-      selectedIconPath: "/images/star2.png",
     },
     {
       pagePath: "/pages/profile/profile",

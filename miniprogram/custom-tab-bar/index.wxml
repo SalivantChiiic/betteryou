@@ -1,14 +1,7 @@
 <cover-view class="tab-bar">
-  <cover-view class="tab-bar-item" data-path="{{list[0].pagePath}}" data-index="0" bindtap="switchTab">
-    <cover-image class="tab-bar-image" src="{{selected == 0 ? list[0].selectedIconPath : list[0].iconPath}}"></cover-image>
-  </cover-view>
-  <cover-view class="tab-bar-item" hover-class="tab-bar-item-hover" bindtap="goAdd">
-    <cover-image class="upload-image" src="{{uploadImgUrl}}"></cover-image>
-  </cover-view>
-  <cover-view class="tab-bar-item" data-path="{{list[1].pagePath}}" data-index="1" bindtap="switchTab">
-    <cover-image class="tab-bar-image" src="{{selected == 1 ? list[1].selectedIconPath : list[1].iconPath}}"></cover-image>
-  </cover-view>
-  <cover-view class="tab-bar-item" data-path="{{list[2].pagePath}}" data-index="2" bindtap="switchTab">
-    <cover-image class="tab-bar-image" src="{{selected == 2 ? list[2].selectedIconPath : list[2].iconPath}}"></cover-image>
-  </cover-view>
+	<block wx:for="{{list}}" wx:key="pagePath">
+		<cover-view class="tab-bar-item" data-path="{{item.pagePath}}" data-index="{{index}}" bindtap="switchTab">
+			<cover-image class="tab-bar-image" src="{{selected == index ? item.selectedIconPath : item.iconPath}}"></cover-image>
+		</cover-view>
+	</block>
 </cover-view>

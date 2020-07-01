@@ -14,6 +14,13 @@ Page({
   async onLoad(options) {
     await this.login()
   },
+  onShow() {
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 0
+      })
+    }
+  },
   async login() {
     wx.showLoading({
       title: '正在登录',
