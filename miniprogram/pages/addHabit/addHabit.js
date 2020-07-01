@@ -38,7 +38,6 @@ Page({
       '#f8ebd8',
       '#965454',
       '#6b5152',
-      '#f0ebe5',
       '#cac3bb',
       '#a6a6a8',
       '#7a7281',
@@ -48,14 +47,16 @@ Page({
       '#c7b8a1',
       '#c9c0d3',
       '#eee5f8'
-    ]
+    ],
+    goalPeriod: [app.globalData.locale.addHabit.daily, app.globalData.locale.addHabit.weekly, app.globalData.locale.addHabit.monthly, app.globalData.locale.addHabit.yearly],
+    trackDays: [app.globalData.locale.addHabit.sun, app.globalData.locale.addHabit.mon, app.globalData.locale.addHabit.tue, app.globalData.locale.addHabit.wed, app.globalData.locale.addHabit.thu, app.globalData.locale.addHabit.fri, app.globalData.locale.addHabit.sat]
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    
+
   },
   selectColor(e) {
     this.setData({
@@ -77,4 +78,17 @@ Page({
       unit: e.detail.value
     })
   },
+  updateTrackDays(e) {
+    debugger
+    e.detail
+  },
+  updateGoalPeriod(e) {
+    debugger
+    e.detail
+  },
+  saveHabit() {
+    wx.navigateBack({
+      delta: 0,
+    })
+  }
 })

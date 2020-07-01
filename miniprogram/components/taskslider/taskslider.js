@@ -10,7 +10,7 @@ Component({
     habitGoal: Number,
     habitUnit: String,
     color: String,
-    sliderPos: Number
+    goalPeriod: String
   },
 
   /**

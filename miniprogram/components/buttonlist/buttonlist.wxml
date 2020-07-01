@@ -1,0 +1,8 @@
+<view class="componentwrapper">
+	<block wx:for="{{buttonList}}" wx:key="*this">
+		<block wx:if="{{buttonStates[index]}}">
+			<view class="{{compact?'compactbtn':'btn'}} selected" style="background-color:{{highlightColor}};" bindtap="onButtonClicked" data-index="{{index}}">{{item}}</view>
+		</block>
+		<view wx:else class="{{compact?'compactbtn':'btn'}}" bindtap="onButtonClicked" data-index="{{index}}">{{item}}</view>
+	</block>
+</view>

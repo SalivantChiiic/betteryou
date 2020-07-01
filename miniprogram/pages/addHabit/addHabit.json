@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "taskslider": "/components/taskslider/taskslider"
+    "taskslider": "/components/taskslider/taskslider",
+    "buttonlist": "/components/buttonlist/buttonlist",
+    "longbutton": "/components/longbutton/longbutton"
   }
 }

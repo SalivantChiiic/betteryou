@@ -6,7 +6,7 @@
 	</view>
 	<view class="valueunitrow">
 		<block wx:if="{{!isDone}}">
-			<text class="txt">{{currentStep}}</text>
+			<text class="txt">{{currentStep}}/{{habitGoal}}</text>
 			<text class="txt" wx:if="{{habitUnit.length > 0}}">{{habitUnit}}</text>
 		</block>
 		<block wx:else>

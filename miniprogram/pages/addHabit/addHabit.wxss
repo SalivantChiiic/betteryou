@@ -6,7 +6,38 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+}
+
+.largelabel {
+  font-size: var(--mediumFontSize);
   margin: 30rpx 0;
+  font-weight: bold;
+}
+
+.label {
+  font-size: var(--smallFontSize);
+  margin-right: 30rpx;
+}
+
+input {
+  border: 1px solid var(--borderColor);
+  border-radius: 15rpx;
+  width: 100%;
+  padding: 20rpx 30rpx;
+  border-color: #424242;
+  margin: 0 15rpx;
+}
+
+.shortinput {
+  width: 40%;
+  padding: 5rpx 10rpx;
+  text-align: center;
+  border-color: #424242;
+  margin: 0 15rpx;
+}
+
+buttonlist {
+  margin: 0 15rpx;
 }
 
 .colorrow {
@@ -16,28 +47,7 @@
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-}
-
-.largelabel {
-  font-size: var(--extraLargeFontSize);
-}
-
-.label {
-  font-size: var(--largeFontSize);
-  margin-right: 30rpx;
-}
-
-input {
-  border: 1px solid var(--borderColor);
-  border-radius: 15rpx;
-  width: 80%;
-  padding: 20rpx 30rpx;
-}
-
-.shortinput {
-  width: 20%;
-  padding: 5rpx 10rpx;
-  margin-right: 40rpx
+  padding-left: 15rpx;
 }
 
 .colorbtn {
@@ -49,7 +59,12 @@ input {
   margin-bottom: 30rpx;
 }
 
-.taskslider {
+.selectedcolorbtn {
+  border: 3px solid #696969;
+  box-sizing: border-box;
+}
+
+longbutton {
   width: 90%;
-  margin: 20rpx 0;
+  margin: 30rpx 0;
 }
