@@ -23,6 +23,8 @@ export default {
     'sat': 'SAT',
     'motivateNotes': 'WRITE SOMETHING TO MOTIVATE YOU:',
     'isPrivate': 'CREATE AS PRIVATE HABIT (NO FRIEND COULD SEE):',
+    'public': 'PUBLIC',
+    'private': 'PRIVATE',
     'save': 'SAVE'
   },
 }

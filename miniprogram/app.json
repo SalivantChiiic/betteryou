@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/dailyHabits/dailyHabits",
     "pages/index/index",
     "pages/join/join",
     "pages/topic/topic",
@@ -27,7 +26,7 @@
     "backgroundColor": "#F9F9F9",
     "list": [
       {
-        "pagePath": "pages/dailyHabits/dailyHabits"
+        "pagePath": "pages/index/index"
       },
       {
         "pagePath": "pages/profile/profile"

@@ -1,6 +1,0 @@
-<view class="pagecontainer">
-	<taskslider class="taskslider"currentProgress="3" habitGoal="15" habitName="跑步" habitUnit="分钟" imgUrl="../../images/check.png" color="#b5c4b1"></taskslider>
-	<taskslider class="taskslider" currentProgress="12" habitGoal="30" habitName="喝水" habitUnit="杯" imgUrl="../../images/check.png" color="#965454"></taskslider>
-	<taskslider class="taskslider" currentProgress="0" habitGoal="1" habitName="早起" imgUrl="../../images/check.png" color="#ead0d1"></taskslider>
-	<image class="addicon" mode="widthFix" src="../../images/add.png" bindtap="addHabit"></image>
-</view>

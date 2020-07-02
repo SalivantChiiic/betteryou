@@ -5,7 +5,7 @@ Component({
     color: "#7A7E83",
     selectedColor: "#3cc51f",
     list: [{
-      pagePath: "/pages/dailyHabits/dailyHabits",
+      pagePath: "/pages/index/index",
       iconPath: "/images/home.png",
       selectedIconPath: "/images/home2.png",
     },

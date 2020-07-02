@@ -68,7 +68,6 @@ App({
       },
       fail: () => {
         userInfo._id = openId
-        userInfo.points = 0
         db.collection('UserInfo').add({
           data: userInfo
         })

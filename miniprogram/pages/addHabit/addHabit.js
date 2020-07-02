@@ -91,6 +91,15 @@ Page({
         value: app.globalData.locale.addHabit.sat
       }
     ],
+    privacySetting: [{
+        id: 'public',
+        value: app.globalData.locale.addHabit.public
+      },
+      {
+        id: 'private',
+        value: app.globalData.locale.addHabit.private
+      }
+    ],
     habitToCreate: {}
   },
 
@@ -116,7 +125,7 @@ Page({
     this.data.habitToCreate.unit = e.detail.value
   },
   updateGoalPeriod(e) {
-    this.data.habitToCreate.goalPeriod = e.detail.selectedItems
+    this.data.habitToCreate.goalPeriod = e.detail.selectedItem
   },
   updateTrackDays(e) {
     this.data.habitToCreate.trackDays = e.detail.selectedItems
@@ -124,8 +133,19 @@ Page({
   inputMotivateNotes(e) {
     this.data.habitToCreate.motivateNotes = e.detail.value
   },
+  updatePrivacySetting(e) {
+    this.data.habitToCreate.isPrivate = e.detail.selectedItem
+  },
   saveHabit() {
-    this.data.habitToCreate.createDate = Date.now()
+    if (!this.data.habitToCreate.createDate) {
+      this.data.habitToCreate.createDate = Date.now()
+      this.data.habitToCreate.openId = app.globalData.openId
+      
+      let db = wx.cloud.database()
+      db.collection('UserHabit').add({
+        data:  this.data.habitToCreate
+      })
+    }
     wx.navigateBack({
       delta: 0,
     })

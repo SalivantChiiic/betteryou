@@ -16,7 +16,7 @@
 		<text class="largelabel">{{locale.goalPeriod}}</text>
 	</view>
 	<view class="rowwrapper">
-		<buttonlist buttonList="{{goalPeriod}}" highlightColor="{{selectedColor}}"bind:buttonListClicked="updateGoalPeriod"></buttonlist>
+		<buttonlist buttonList="{{goalPeriod}}" highlightColor="{{selectedColor}}" bind:buttonListClicked="updateGoalPeriod"></buttonlist>
 	</view>
 	<view class="rowwrapper">
 		<text class="largelabel">{{locale.trackDays}}</text>
@@ -37,6 +37,12 @@
 	</view>
 	<view class="rowwrapper">
 		<input bindinput="inputMotivateNotes"></input>
+	</view>
+	<view class="rowwrapper">
+		<text class="largelabel">{{locale.isPrivate}}</text>
+	</view>
+	<view class="rowwrapper">
+		<buttonlist buttonList="{{privacySetting}}" highlightColor="{{selectedColor}}" bind:buttonListClicked="updatePrivacySetting"></buttonlist>
 	</view>
 	<longbutton color="{{selectedColor}}" text="{{locale.save}}" bindtap="saveHabit"></longbutton>
 </view>

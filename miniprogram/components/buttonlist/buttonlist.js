@@ -68,8 +68,16 @@ Component({
           selectedItems.push(this.properties.buttonList[i].id)
         }
       }
-      var eventDetail = {
-        selectedItems: selectedItems
+      let eventDetail
+      if (this.properties.multiSelect) {
+        eventDetail = {
+          selectedItems: selectedItems
+        }
+      }
+      else{
+        eventDetail = {
+          selectedItem: selectedItems[0]
+        }
       }
       var eventOption = {
         composed: true

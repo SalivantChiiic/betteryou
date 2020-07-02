@@ -23,6 +23,8 @@ export default {
     'sat': '周六',
     'motivateNotes': '写一段激励自己的话：',
     'isPrivate': '设为私密习惯（好友不可见）：',
+    'public': '公开',
+    'private': '私密',
     'save': '保存'
   }
 }

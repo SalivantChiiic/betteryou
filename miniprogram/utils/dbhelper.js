@@ -8,7 +8,6 @@ function addToTable(tableName, objectToAdd) {
     })
 }
 
-
 module.exports = {
   addToTable: addToTable
 }
