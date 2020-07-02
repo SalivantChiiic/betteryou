@@ -5,13 +5,15 @@ Component({
    * Component properties
    */
   properties: {
+    habitId: String,
     imgUrl: String,
     habitName: String,
     habitGoal: Number,
     habitUnit: String,
     color: String,
     goalPeriod: String,
-    currentProgress: Number
+    currentProgress: Number,
+    date: Number
   },
 
   /**
@@ -67,6 +69,7 @@ Component({
     },
     onTouchEnd() {
       this.updateProgress()
+      this.saveProgressToServer()
     },
     updateProgress() {
       let endSliderPos = this.data.sliderStepScale * this.data.currentStep
@@ -76,6 +79,41 @@ Component({
         currentStep: this.data.currentStep
       })
       this.data.lastStep = this.data.currentStep
+    },
+    saveProgressToServer() {
+      let db = wx.cloud.database()
+
+      db.collection('UserHabit').doc(this.properties.habitId).get({
+        success: res => {
+          let progresses = res.data.progresses
+          let noProgressInThisDay = true
+          for (let i in progresses) {
+            if (progresses[i].date == this.properties.date) {
+              progresses[i].progress = this.data.currentStep
+              progresses[i].updateTime = Date.now()
+              noProgressInThisDay = false
+              break
+            }
+          }
+          if (noProgressInThisDay) {
+            db.collection('UserHabit').doc(this.properties.habitId).update({
+              data: {
+                progresses: db.command.push({
+                  date: this.properties.date,
+                  progress: this.data.currentStep,
+                  updateTime: Date.now()
+                })
+              }
+            })
+          } else {
+            db.collection('UserHabit').doc(this.properties.habitId).update({
+              data: {
+                progresses: progresses
+              }
+            })
+          }
+        }
+      })
     }
   }
 })

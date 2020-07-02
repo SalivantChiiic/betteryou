@@ -100,7 +100,13 @@ Page({
         value: app.globalData.locale.addHabit.private
       }
     ],
-    habitToCreate: {}
+    habitToCreate: {
+      color:'#c1cbd7',
+      goalPeriod: 'daily',
+      trackDays: ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'],
+      privacySetting: 'public',
+      motivateNotes: ''
+    }
   },
 
   /**
@@ -134,7 +140,7 @@ Page({
     this.data.habitToCreate.motivateNotes = e.detail.value
   },
   updatePrivacySetting(e) {
-    this.data.habitToCreate.isPrivate = e.detail.selectedItem
+    this.data.habitToCreate.privacySetting = e.detail.selectedItem
   },
   saveHabit() {
     if (!this.data.habitToCreate.createDate) {
