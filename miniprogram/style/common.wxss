@@ -1,6 +1,7 @@
 Page {
   min-height: 100%;
-  --borderColor: rgb(38, 60, 87);
+  --titleColor: black;
+  --subTitleColor: #939391;
 
   --extraLargeFontSize: 45rpx;
   --largeFontSize: 32rpx;

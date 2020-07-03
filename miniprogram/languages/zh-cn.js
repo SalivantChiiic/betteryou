@@ -1,4 +1,9 @@
 export default {
+  // index page
+  'index': {
+    'today': '今天',
+    'yesterday': '昨天'
+  },
   // addHabit page
   'addHabit': {
     'name': '给习惯起一个名字：',

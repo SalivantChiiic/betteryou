@@ -1,4 +1,7 @@
-<view class="pagecontainer">
+<view class="pagecontainer" style="padding-top:{{statusBarHeight}}px;">
+	<view class="rowwrapper">
+		<datepicker bind:dateSelected="dateSelected"></datepicker>
+	</view>
 	<block wx:for="{{habits}}" wx:key="id">
 		<taskslider class="taskslider" habitId="{{item._id}}" habitGoal="{{item.goal}}" habitName="{{item.name}}" habitUnit="{{item.unit}}" imgUrl="../../images/check.png" color="{{item.color}}" date="{{selectedDate}}" currentProgress="{{item.currentProgress}}"></taskslider>
 	</block>

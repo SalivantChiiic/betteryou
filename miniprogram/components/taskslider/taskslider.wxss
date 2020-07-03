@@ -50,3 +50,7 @@
 .txt {
   margin: 10rpx;
 }
+
+.hover {
+  transform: scale(0.98, 0.98);
+}

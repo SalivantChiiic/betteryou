@@ -30,17 +30,25 @@ Component({
   },
   lifetimes: {
     attached() {
-      screenWidth = app.globalData.systemInfo.screenWidth * 0.4
-      this.data.sliderStepScale = 100 / this.properties.habitGoal
-      this.data.stepWidth = screenWidth * this.data.sliderStepScale / 100
-      this.data.currentStep = this.properties.currentProgress
-      this.updateProgress()
+      this.initializeComponents()
+    }
+  },
+  observers: {
+    'currentProgress'() {
+      this.initializeComponents()
     }
   },
   /**
    * Component methods
    */
   methods: {
+    initializeComponents() {
+      screenWidth = app.globalData.systemInfo.screenWidth * 1
+      this.data.sliderStepScale = 100 / this.properties.habitGoal
+      this.data.stepWidth = screenWidth * this.data.sliderStepScale / 100
+      this.data.currentStep = this.properties.currentProgress
+      this.updateProgress()
+    },
     onTouchMove(e) {
       let moveDistance = e.touches[e.touches.length - 1].clientX - this.data.startPoint.clientX
       if (moveDistance < 0) {
@@ -66,9 +74,11 @@ Component({
     },
     onTouchStart(e) {
       this.data.startPoint = e.touches[0]
+      wx.vibrateShort()
     },
     onTouchEnd() {
       this.updateProgress()
+      this.saveProgressToStorage()
       this.saveProgressToServer()
     },
     updateProgress() {
@@ -80,9 +90,40 @@ Component({
       })
       this.data.lastStep = this.data.currentStep
     },
+    saveProgressToStorage() {
+      let habits = wx.getStorageSync('habits')
+      for (let i in habits) {
+        if (habits[i]._id == this.properties.habitId) {
+          let noProgressInThisDay = true
+          for (let j in habits[i].progresses) {
+            let prog = habits[i].progresses[j]
+            if (prog.date == this.properties.date) {
+              prog.progress = this.data.currentStep
+              prog.updateTime = Date.now()
+              noProgressInThisDay = false
+              break
+            }
+          }
+          if (noProgressInThisDay) {
+            if(!habits[i].progresses) {
+              habits[i].progresses = []
+            }
+            habits[i].progresses.push({
+              date: this.properties.date,
+              progress: this.data.currentStep,
+              updateTime: Date.now()
+            })
+          }
+          break
+        }
+      }
+      wx.setStorage({
+        data: habits,
+        key: 'habits',
+      })
+    },
     saveProgressToServer() {
       let db = wx.cloud.database()
-
       db.collection('UserHabit').doc(this.properties.habitId).get({
         success: res => {
           let progresses = res.data.progresses
@@ -112,6 +153,9 @@ Component({
               }
             })
           }
+        },
+        fail: err => {
+          console.error(err)
         }
       })
     }

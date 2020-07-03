@@ -1,4 +1,9 @@
 export default {
+  // index page
+  'index': {
+    'today': 'TODAY',
+    'yesterday': 'YESTERDAY'
+  },
   // addHabit page
   'addHabit': {
     'name': 'NAME YOUR HABIT:',

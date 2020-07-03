@@ -146,7 +146,14 @@ Page({
     if (!this.data.habitToCreate.createDate) {
       this.data.habitToCreate.createDate = Date.now()
       this.data.habitToCreate.openId = app.globalData.openId
-      
+      this.data.habitToCreate.progresses = []
+      this.data.habitToCreate._id = Date.now().toString()
+      let habits = wx.getStorageSync('habits')
+      habits.push(this.data.habitToCreate)
+      wx.setStorage({
+        data: habits,
+        key: 'habits',
+      })
       let db = wx.cloud.database()
       db.collection('UserHabit').add({
         data:  this.data.habitToCreate

@@ -6,6 +6,19 @@
   width: 100%;
 }
 
+.rowwrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+datepicker {
+  width: 90%;
+  margin: 20rpx 0;
+}
+
 .taskslider{
   width: 90%;
   margin: 20rpx 0;

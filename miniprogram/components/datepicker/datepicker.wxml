@@ -1,0 +1,13 @@
+<view class="componentwrapper">
+	<view class="datelabelwrapper" bindtap="goToPreviousDay">{{previousDate}}</view>
+	<view class="datelabelwrapper" bindtap="backToToday">
+		<text class="todaylabel">{{currentDate}}</text>
+	</view>
+	<view class="datelabelwrapper">
+		<!-- <picker mode="date" value="{{date}}" bindchange="bindDateChange">
+			<view class="picker">
+				当前选择: {{date}}
+			</view>
+		</picker> -->
+	</view>
+</view>

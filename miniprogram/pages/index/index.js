@@ -6,7 +6,9 @@ Page({
    */
   data: {
     habits: [],
-    selectedDate: new Date(new Date().toDateString()).getTime()
+    selectedDate: new Date(new Date().toDateString()).getTime(),
+    locale: app.globalData.locale.index,
+    statusBarHeight: app.globalData.systemInfo.statusBarHeight
   },
 
   /**
@@ -14,7 +16,7 @@ Page({
    */
   async onLoad(options) {
     await this.login()
-    this.retrieveHabits()
+    this.retrieveHabitsFromStorage()
   },
   onShow() {
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
@@ -22,29 +24,27 @@ Page({
         selected: 0
       })
     }
+    this.retrieveHabitsFromStorage()
   },
-  retrieveHabits() {
+  retrieveHabitsFromStorage() {
     let habits = wx.getStorageSync('habits')
     if (!!habits) {
-      this.calculateHabitsCurrentProgress(habits)
-      this.setData({
-        habits: habits
-      })
+      this.updateHabitsProgressByDate(habits, this.data.selectedDate)
+    } else {
+      this.retrieveHabitsFromServer()
     }
-    this.retrieveHabitsFromServer()
   },
   retrieveHabitsFromServer() {
+    if (!app.globalData.openId) {
+      return
+    }
     let db = wx.cloud.database()
     db.collection('UserHabit').where({
       _openid: app.globalData.openId
     }).get({
       success: res => {
         let habits = res.data
-        this.calculateHabitsCurrentProgress(habits)
-        debugger
-        this.setData({
-          habits: habits
-        })
+        this.updateHabitsProgressByDate(habits, this.data.selectedDate)
         wx.setStorage({
           data: habits,
           key: 'habits',
@@ -52,18 +52,22 @@ Page({
       }
     })
   },
-  calculateHabitsCurrentProgress(habits) {
+  updateHabitsProgressByDate(habits, date) {
     for (let i in habits) {
       let habit = habits[i]
       let currentProgress = 0
       for (let j in habit.progresses) {
-        if (habit.progresses[j].date == this.data.selectedDate) {
+        if (habit.progresses[j].date == date) {
           currentProgress = habit.progresses[j].progress
           break
         }
       }
       habit.currentProgress = currentProgress
     }
+    this.setData({
+      habits: habits,
+      selectedDate: date
+    })
   },
   async login() {
     wx.showLoading({
@@ -108,8 +112,13 @@ Page({
     })
   },
   addHabit() {
+    wx.vibrateShort()
     wx.navigateTo({
       url: '../addHabit/addHabit',
     })
+  },
+  dateSelected(e) {
+    wx.vibrateShort()
+    this.updateHabitsProgressByDate(this.data.habits, e.detail.selectedDate)
   }
 })
