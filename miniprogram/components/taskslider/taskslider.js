@@ -29,9 +29,7 @@ Component({
     isDone: false,
   },
   lifetimes: {
-    attached() {
-      this.initializeComponents()
-    }
+    attached() {}
   },
   observers: {
     'currentProgress'() {
@@ -47,7 +45,7 @@ Component({
       this.data.sliderStepScale = 100 / this.properties.habitGoal
       this.data.stepWidth = screenWidth * this.data.sliderStepScale / 100
       this.data.currentStep = this.properties.currentProgress
-      this.updateProgress()
+      this.updateProgress(true)
     },
     onTouchMove(e) {
       let moveDistance = e.touches[e.touches.length - 1].clientX - this.data.startPoint.clientX
@@ -59,9 +57,18 @@ Component({
       }
       let newSliderPos = moveDistance / screenWidth * 100
       newSliderPos += this.data.sliderStepScale * this.data.lastStep
-      this.setData({
-        sliderPos: newSliderPos
-      })
+      let clickId = '#slider'
+      this.animate(clickId, [{
+          width: this.data.sliderPos
+        },
+        {
+          width: 100
+        }
+      ], 100)
+      this.data.sliderPos = newSliderPos
+      // this.setData({
+      //   sliderPos: newSliderPos
+      // })
       let step = Math.round(moveDistance / this.data.stepWidth)
       step += this.data.lastStep
       if (this.data.currentStep != step && step >= 0 && step <= this.properties.habitGoal) {
@@ -81,8 +88,25 @@ Component({
       this.saveProgressToStorage()
       this.saveProgressToServer()
     },
-    updateProgress() {
+    performProgressAnimation(initial, currentPosition, newPosition) {
+      if (newPosition == 0) {
+        return
+      }
+      if (!!initial) {
+        currentPosition = 0
+      }
+      let clickId = '#slider'
+      this.animate(clickId, [{
+          width: currentPosition
+        },
+        {
+          width: newPosition
+        }
+      ], 800)
+    },
+    updateProgress(initial = false) {
       let endSliderPos = this.data.sliderStepScale * this.data.currentStep
+      this.performProgressAnimation(initial, this.data.sliderPos, endSliderPos)
       this.setData({
         sliderPos: endSliderPos,
         isDone: this.data.currentStep >= this.properties.habitGoal,
@@ -105,7 +129,7 @@ Component({
             }
           }
           if (noProgressInThisDay) {
-            if(!habits[i].progresses) {
+            if (!habits[i].progresses) {
               habits[i].progresses = []
             }
             habits[i].progresses.push({

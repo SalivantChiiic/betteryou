@@ -2,7 +2,9 @@ export default {
   // index page
   'index': {
     'today': 'TODAY',
-    'yesterday': 'YESTERDAY'
+    'yesterday': 'YESTERDAY',
+    'isLogin': 'LOGINING',
+    'loginFailedToast': 'LOGIN FAILED'
   },
   // addHabit page
   'addHabit': {
@@ -13,6 +15,7 @@ export default {
     'unit': 'UNIT:',
     'unitPlaceHolder': 'KM, MIN',
     'color': 'CHOOSE A COLOR',
+    'icon': 'CHOOSE AN ICON',
     'goalPeriod': 'CHOOSE A GOAL PERIOD:',
     'daily':'DAILY',
     'weekly':'WEEKLY',

@@ -3,6 +3,8 @@ Page {
   --titleColor: black;
   --subTitleColor: #939391;
 
+  --borderColor: #939391;
+
   --extraLargeFontSize: 45rpx;
   --largeFontSize: 32rpx;
   --mediumFontSize: 28rpx;

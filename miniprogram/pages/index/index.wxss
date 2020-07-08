@@ -24,6 +24,14 @@ datepicker {
   margin: 20rpx 0;
 }
 
+.addiconrow {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: 80%;
+}
+
 .addicon {
-  width: 40rpx;
+  width: 60rpx;
 }

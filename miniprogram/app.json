@@ -1,16 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/join/join",
-    "pages/topic/topic",
-    "pages/uploadImg/uploadImg",
-    "pages/comments/comments",
-    "pages/anniversaries/anniversaries",
-    "pages/error/loginfailed",
-    "pages/entrance/entrance",
     "pages/profile/profile",
-    "pages/closeMiniProgram/closeMiniProgram",
-    "pages/addHabit/addHabit"
+    "pages/addHabit/addHabit",
+    "pages/join/join"
   ],
   "window": {
     "backgroundColor": "#FFFFFF",

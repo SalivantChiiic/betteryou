@@ -2,8 +2,14 @@
 	<view class="rowwrapper">
 		<datepicker bind:dateSelected="dateSelected"></datepicker>
 	</view>
-	<block wx:for="{{habits}}" wx:key="id">
-		<taskslider class="taskslider" habitId="{{item._id}}" habitGoal="{{item.goal}}" habitName="{{item.name}}" habitUnit="{{item.unit}}" imgUrl="../../images/check.png" color="{{item.color}}" date="{{selectedDate}}" currentProgress="{{item.currentProgress}}"></taskslider>
-	</block>
-	<image class="addicon" mode="widthFix" src="../../images/add.png" bindtap="addHabit"></image>
+	<view id="habitsection" class="pagecontainer">
+		<block wx:for="{{habits}}" wx:key="id">
+			<block wx:if="{{item.trackToday}}">
+				<taskslider class="taskslider" habitId="{{item._id}}" habitGoal="{{item.goal}}" habitName="{{item.name}}" habitUnit="{{item.unit}}" imgUrl="{{item.iconUrl}}" color="{{item.color}}" date="{{selectedDate}}" currentProgress="{{item.currentProgress}}"></taskslider>
+			</block>
+		</block>
+	</view>
+	<view class="addiconrow">
+		<image class="addicon" mode="widthFix" src="../../images/add.png" bindtap="addHabit"></image>
+	</view>
 </view>

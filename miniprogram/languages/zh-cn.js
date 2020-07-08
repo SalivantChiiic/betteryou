@@ -2,7 +2,9 @@ export default {
   // index page
   'index': {
     'today': '今天',
-    'yesterday': '昨天'
+    'yesterday': '昨天',
+    'isLogin': '登录中',
+    'loginFailedToast': '登录失败'
   },
   // addHabit page
   'addHabit': {
@@ -13,6 +15,7 @@ export default {
     'unit': '数值单位：',
     'unitPlaceHolder': '公里、分钟',
     'color': '挑选一个颜色：',
+    'icon': '挑选一个图标',
     'goalPeriod': '设定目标周期：',
     'daily':'每天',
     'weekly':'每周',

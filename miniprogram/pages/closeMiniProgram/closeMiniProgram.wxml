@@ -1,4 +1,0 @@
-<view class="homecontainer">
-	<text>去刚刚转发的群聊对话中再次进入小程序</text>
-	<navigator class="btn" target="miniProgram" open-type="exit">关闭当前窗口</navigator>
-</view>

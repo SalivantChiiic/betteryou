@@ -1,4 +1,5 @@
 const app = getApp()
+const db = wx.cloud.database()
 Page({
 
   /**
@@ -8,14 +9,16 @@ Page({
     habits: [],
     selectedDate: new Date(new Date().toDateString()).getTime(),
     locale: app.globalData.locale.index,
-    statusBarHeight: app.globalData.systemInfo.statusBarHeight
+    statusBarHeight: app.globalData.systemInfo.statusBarHeight,
+    dayOfToday: (new Date()).getDay(),
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   async onLoad(options) {
-    await this.login()
+    let habits = wx.getStorageSync('habits')
+    await this.login(!!habits && habits.length > 0)
     this.retrieveHabitsFromStorage()
   },
   onShow() {
@@ -28,17 +31,18 @@ Page({
   },
   retrieveHabitsFromStorage() {
     let habits = wx.getStorageSync('habits')
-    if (!!habits) {
+    if (!!habits && habits.length > 0) {
       this.updateHabitsProgressByDate(habits, this.data.selectedDate)
     } else {
-      this.retrieveHabitsFromServer()
+      if (!!app.globalData.openId) {
+        this.retrieveHabitsFromServer()
+      }
     }
   },
   retrieveHabitsFromServer() {
     if (!app.globalData.openId) {
       return
     }
-    let db = wx.cloud.database()
     db.collection('UserHabit').where({
       _openid: app.globalData.openId
     }).get({
@@ -53,27 +57,36 @@ Page({
     })
   },
   updateHabitsProgressByDate(habits, date) {
+    let dayOfToday = new Date(date).getDay().toString()
     for (let i in habits) {
       let habit = habits[i]
-      let currentProgress = 0
-      for (let j in habit.progresses) {
-        if (habit.progresses[j].date == date) {
-          currentProgress = habit.progresses[j].progress
-          break
+      if (habit.trackDays.indexOf(dayOfToday) >= 0) {
+        let currentProgress = 0
+        for (let j in habit.progresses) {
+          if (habit.progresses[j].date == date) {
+            currentProgress = habit.progresses[j].progress
+            break
+          }
         }
+        habit.currentProgress = currentProgress
+        habit.trackToday = true
+      } else {
+        habit.trackToday = false
       }
-      habit.currentProgress = currentProgress
     }
     this.setData({
       habits: habits,
-      selectedDate: date
+      selectedDate: date,
+      dayOfToday: dayOfToday
     })
   },
-  async login() {
-    wx.showLoading({
-      title: '正在登录',
-      mask: true
-    })
+  async login(isHabitsInStorage) {
+    if (!isHabitsInStorage) {
+      wx.showLoading({
+        title: this.data.locale.isLogin,
+        mask: true
+      })
+    }
     let callLoginFunction = await new Promise((resolve, reject) => {
       wx.cloud.callFunction({
         name: 'login',
@@ -89,11 +102,13 @@ Page({
         }
       })
     }).catch(() => {
-      wx.navigateTo({
-        url: '../error/loginfailed',
+      wx.showToast({
+        title: this.locale.loginFailedToast,
       })
+      return
     })
     app.globalData.openId = callLoginFunction.result.openid
+    this.syncHabitsToServer()
     wx.getSetting({
       success: setting => {
         if (setting.authSetting['scope.userInfo']) {
@@ -111,6 +126,24 @@ Page({
       }
     })
   },
+  syncHabitsToServer() {
+    console.log('Syncing habits to server...')
+    let habits = wx.getStorageSync('habits')
+    for (let i in habits) {
+      let id = habits[i]._id
+      delete habits[i]._id
+      delete habits[i]._openid
+      db.collection('UserHabit').doc(id).set({
+        data: habits[i],
+        success: () => {
+          console.log(habits[i].name + ' synced.')
+        },
+        fail: err => {
+          console.error(err)
+        }
+      })
+    }
+  },
   addHabit() {
     wx.vibrateShort()
     wx.navigateTo({
@@ -119,6 +152,14 @@ Page({
   },
   dateSelected(e) {
     wx.vibrateShort()
-    this.updateHabitsProgressByDate(this.data.habits, e.detail.selectedDate)
+    let habits = wx.getStorageSync('habits')
+    // let clickId = '#habitsection'
+    // this.animate(clickId, [
+    //   { opacity: 0.6, scale: [0.95]},
+    //   { opacity: 1, scale: [1] }
+    // ], 200, function () {
+    //   this.clearAnimation(clickId)
+    // }.bind(this))
+    this.updateHabitsProgressByDate(habits, e.detail.selectedDate)
   }
 })

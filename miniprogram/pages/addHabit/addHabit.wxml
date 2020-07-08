@@ -33,6 +33,14 @@
 		</block>
 	</view>
 	<view class="rowwrapper">
+		<text class="largelabel">{{locale.icon}}</text>
+	</view>
+	<view class="colorrow">
+		<block wx:for="{{icons}}" wx:key="*this">
+			<image class="icon {{selectedIcon==item?'selectedicon':''}}" mode="widthFix" src="{{item}}" data-url="{{item}}" bindtap="selectIcon"></image>
+		</block>
+	</view>
+	<view class="rowwrapper">
 		<text class="largelabel">{{locale.motivateNotes}}</text>
 	</view>
 	<view class="rowwrapper">

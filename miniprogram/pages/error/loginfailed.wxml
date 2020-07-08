@@ -1,6 +1,0 @@
-<page-meta background-color="#DE5E51">
-	<navigation-bar background-color="#DE5E51" />
-</page-meta>
-<view class="home-container">
-		<button class="retrybtn" bindtap="retry" hover-class="retrybtnhover">再试一次</button>
-</view>

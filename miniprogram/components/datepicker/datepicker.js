@@ -1,4 +1,5 @@
 const app = getApp()
+var dateHelper = require('../../utils/datehelper.js')
 Component({
   /**
    * 组件的属性列表
@@ -13,7 +14,9 @@ Component({
   data: {
     locale: app.globalData.locale.index,
     currentDate: '',
-    previousDate: ''
+    previousDate: '',
+    currentDateLabel: '',
+    previousDateLabel: ''
   },
 
   lifetimes: {
@@ -28,11 +31,12 @@ Component({
   methods: {
     backToToday() {
       this.setData({
-        currentDate: this.data.locale.today,
-        previousDate: this.data.locale.yesterday
+        currentDateLabel: this.data.locale.today,
+        previousDateLabel: this.data.locale.yesterday
       })
+      this.data.currentDate = new Date(new Date().toDateString())
       let eventDetail = {
-        selectedDate: new Date(new Date().toDateString()).getTime()
+        selectedDate: this.data.currentDate.getTime()
       }
       let eventOption = {
         composed: true
@@ -40,13 +44,25 @@ Component({
       this.triggerEvent('dateSelected', eventDetail, eventOption)
     },
     goToPreviousDay() {
-      if(this.data.currentDate == this.data.locale.today) {
-        this.data.currentDate = new Date(new Date().toDateString())
-        this.data.currentDate = this.data.currentDate.setDate(this.data.currentDate.getDate() - 1)
+      let previousDate = new Date(this.data.currentDate)
+      previousDate.setDate(previousDate.getDate() - 1)
+      let dateBeforePreviousDate = new Date(previousDate.toDateString())
+      dateBeforePreviousDate.setDate(dateBeforePreviousDate.getDate() - 1)
+      if (this.data.currentDateLabel == this.data.locale.today) {
+        this.setData({
+          currentDateLabel: this.data.locale.yesterday,
+          previousDateLabel: dateHelper.convertDateToString(dateBeforePreviousDate, app.globalData.displayInEnglish)
+        })
+      } else {
+        this.setData({
+          currentDateLabel: dateHelper.convertDateToString(previousDate, app.globalData.displayInEnglish),
+          previousDateLabel: dateHelper.convertDateToString(dateBeforePreviousDate, app.globalData.displayInEnglish)
+        })
       }
+      this.data.currentDate = previousDate
 
       let eventDetail = {
-        selectedDate: this.data.currentDate
+        selectedDate: previousDate.getTime()
       }
       let eventOption = {
         composed: true
