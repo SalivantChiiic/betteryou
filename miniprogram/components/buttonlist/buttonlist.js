@@ -7,7 +7,8 @@ Component({
     buttonList: Array,
     multiSelect: Boolean,
     highlightColor: String,
-    compact: Boolean
+    compact: Boolean,
+    selectedButtons: Array
   },
 
   /**
@@ -19,13 +20,27 @@ Component({
 
   lifetimes: {
     attached() {
+      this.initializeComponent()
+    }
+  },
+  observers: {
+    'selectedButtons'() {
+      this.initializeComponent()
+    }
+  },
+  methods: {
+    initializeComponent() {
       if (this.properties.multiSelect) {
         for (let i in this.properties.buttonList) {
-          this.data.buttonStates.push(true)
+          if (this.properties.selectedButtons.length == 0 || this.properties.selectedButtons.indexOf(i) >= 0) {
+            this.data.buttonStates.push(true)
+          } else {
+            this.data.buttonStates.push(false)
+          }
         }
       } else {
         for (let i in this.properties.buttonList) {
-          if (i == 0) {
+          if (this.properties.selectedButtons.length == 0 && i == 0 || this.properties.selectedButtons[0] == i) {
             this.data.buttonStates.push(true)
           } else {
             this.data.buttonStates.push(false)
@@ -35,13 +50,7 @@ Component({
       this.setData({
         buttonStates: this.data.buttonStates
       })
-    }
-  },
-
-  /**
-   * 组件的方法列表
-   */
-  methods: {
+    },
     onButtonClicked(e) {
       if (this.properties.multiSelect) {
         for (let i in this.data.buttonStates) {
@@ -73,8 +82,7 @@ Component({
         eventDetail = {
           selectedItems: selectedItems
         }
-      }
-      else{
+      } else {
         eventDetail = {
           selectedItem: selectedItems[0]
         }

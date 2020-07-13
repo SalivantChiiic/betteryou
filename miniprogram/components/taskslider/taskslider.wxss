@@ -52,5 +52,20 @@
 }
 
 .hover {
-  transform: scale(0.98, 0.98);
+  transform: scale(1.02, 1.02);
+}
+
+.editrow {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20rpx;
+  overflow: hidden;
+}
+
+.editrowicon {
+  width: 50rpx;
+  height: 50rpx;
+  position: relative;
+  top: -100rpx;
 }

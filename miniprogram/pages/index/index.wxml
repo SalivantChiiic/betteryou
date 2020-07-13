@@ -1,11 +1,11 @@
-<view class="pagecontainer" style="padding-top:{{statusBarHeight}}px;">
+<view id="page" class="pagecontainer" style="padding-top:{{statusBarHeight}}px;">
 	<view class="rowwrapper">
 		<datepicker bind:dateSelected="dateSelected"></datepicker>
 	</view>
 	<view id="habitsection" class="pagecontainer">
 		<block wx:for="{{habits}}" wx:key="id">
 			<block wx:if="{{item.trackToday}}">
-				<taskslider class="taskslider" habitId="{{item._id}}" habitGoal="{{item.goal}}" habitName="{{item.name}}" habitUnit="{{item.unit}}" imgUrl="{{item.iconUrl}}" color="{{item.color}}" date="{{selectedDate}}" currentProgress="{{item.currentProgress}}"></taskslider>
+				<taskslider class="taskslider" habit="{{item}}" date="{{selectedDate}}" showEditRow="{{item._id==showEditRowId}}" bind:showEditRow="showEditRow" bind:hideEditRow="hideEditRow" bind:deleteHabit="deleteHabit"></taskslider>
 			</block>
 		</block>
 	</view>

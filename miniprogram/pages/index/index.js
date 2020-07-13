@@ -11,6 +11,7 @@ Page({
     locale: app.globalData.locale.index,
     statusBarHeight: app.globalData.systemInfo.statusBarHeight,
     dayOfToday: (new Date()).getDay(),
+    showEditRowId: -1
   },
 
   /**
@@ -20,6 +21,16 @@ Page({
     let habits = wx.getStorageSync('habits')
     await this.login(!!habits && habits.length > 0)
     this.retrieveHabitsFromStorage()
+  },
+  onReady() {
+    let clickId = '#page'
+    this.animate(clickId, [{
+        opacity: 0
+      },
+      {
+        opacity: 1
+      }
+    ], 500)
   },
   onShow() {
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
@@ -32,7 +43,7 @@ Page({
   retrieveHabitsFromStorage() {
     let habits = wx.getStorageSync('habits')
     if (!!habits && habits.length > 0) {
-      this.updateHabitsProgressByDate(habits, this.data.selectedDate)
+      this.calculateCurrentProgress(habits, this.data.selectedDate)
     } else {
       if (!!app.globalData.openId) {
         this.retrieveHabitsFromServer()
@@ -48,7 +59,7 @@ Page({
     }).get({
       success: res => {
         let habits = res.data
-        this.updateHabitsProgressByDate(habits, this.data.selectedDate)
+        this.calculateCurrentProgress(habits, this.data.selectedDate)
         wx.setStorage({
           data: habits,
           key: 'habits',
@@ -56,7 +67,7 @@ Page({
       }
     })
   },
-  updateHabitsProgressByDate(habits, date) {
+  calculateCurrentProgress(habits, date) {
     let dayOfToday = new Date(date).getDay().toString()
     for (let i in habits) {
       let habit = habits[i]
@@ -76,8 +87,7 @@ Page({
     }
     this.setData({
       habits: habits,
-      selectedDate: date,
-      dayOfToday: dayOfToday
+      selectedDate: date
     })
   },
   async login(isHabitsInStorage) {
@@ -108,7 +118,7 @@ Page({
       return
     })
     app.globalData.openId = callLoginFunction.result.openid
-    this.syncHabitsToServer()
+    this.syncHabitsStorageToServer()
     wx.getSetting({
       success: setting => {
         if (setting.authSetting['scope.userInfo']) {
@@ -126,7 +136,7 @@ Page({
       }
     })
   },
-  syncHabitsToServer() {
+  syncHabitsStorageToServer() {
     console.log('Syncing habits to server...')
     let habits = wx.getStorageSync('habits')
     for (let i in habits) {
@@ -153,13 +163,29 @@ Page({
   dateSelected(e) {
     wx.vibrateShort()
     let habits = wx.getStorageSync('habits')
-    // let clickId = '#habitsection'
-    // this.animate(clickId, [
-    //   { opacity: 0.6, scale: [0.95]},
-    //   { opacity: 1, scale: [1] }
-    // ], 200, function () {
-    //   this.clearAnimation(clickId)
-    // }.bind(this))
-    this.updateHabitsProgressByDate(habits, e.detail.selectedDate)
+    this.calculateCurrentProgress(habits, e.detail.selectedDate)
+    this.hideEditRow()
+  },
+  showEditRow(e) {
+    this.setData({
+      showEditRowId: e.detail.habitId
+    })
+  },
+  hideEditRow() {
+    this.setData({
+      showEditRowId: -1
+    })
+  },
+  deleteHabit(e) {
+    let habits = wx.getStorageSync('habits')
+    for(let i in habits) {
+      if (habits[i]._id == e.detail.id) {
+        habits.splice(i, 1)
+        break
+      }
+    }
+    this.calculateCurrentProgress(habits, this.data.selectedDate)
+    wx.setStorageSync('habits', habits)
+    this.syncHabitsStorageToServer()
   }
 })

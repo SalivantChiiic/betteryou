@@ -9,4 +9,14 @@ Page {
   --largeFontSize: 32rpx;
   --mediumFontSize: 28rpx;
   --smallFontSize: 25rpx;
+
+  --fontSizeTwenty: 40rpx;
+  --fontSizeSixteen: 32rpx;
+  --fontSizeFourteen: 28rpx;
+  --fontSizeTwelve: 24rpx;
+  --fontSizeEleven: 22rpx;
+  --fontSizeTen: 20rpx;
+  --mediumFontWeight: 500;
+  --semiboldFontWeight: 600;
+  --regularFontWeight: 400;
 }

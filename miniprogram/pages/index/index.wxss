@@ -1,9 +1,13 @@
-.pagecontainer{
+.pagecontainer {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
+}
+
+#page {
+  opacity: 0;
 }
 
 .rowwrapper {
@@ -19,7 +23,7 @@ datepicker {
   margin: 20rpx 0;
 }
 
-.taskslider{
+.taskslider {
   width: 90%;
   margin: 20rpx 0;
 }

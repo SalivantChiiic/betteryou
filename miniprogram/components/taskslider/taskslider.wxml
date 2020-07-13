@@ -1,16 +1,21 @@
-<view hover-class="hover" hover-start-time="0" hover-stay-time="0" class="componentwrapper" style="background-color:{{color}}99;" catchtouchstart="onTouchStart" catchtouchend="onTouchEnd" catchtouchmove="onTouchMove">
-	<view id="slider" class="sliderview" style="width:{{sliderPos}}%;background-color:{{color}};"></view>
+<view hover-class="hover" hover-start-time="0" hover-stay-time="0" class="componentwrapper" style="background-color:{{habit.color}}99;"  catchtouchstart="onTouchStart" catchtouchend="onTouchEnd" catchtouchmove="onTouchMove">
+	<view id="slider" class="sliderview" style="width:{{sliderPos}}%;background-color:{{habit.color}};"></view>
 	<view class="iconnamerow">
-		<image class="icon" mode="widthFix" src="{{imgUrl}}"></image>
-		<text class="txt">{{habitName}}</text>
+		<image class="icon" mode="widthFix" src="{{habit.iconUrl}}"></image>
+		<text class="txt">{{habit.name}}</text>
 	</view>
 	<view class="valueunitrow">
 		<block wx:if="{{!isDone}}">
-			<text class="txt">{{currentStep}}/{{habitGoal}}</text>
-			<text class="txt" wx:if="{{habitUnit.length > 0}}">{{habitUnit}}</text>
+			<text class="txt">{{currentStep}}/{{habit.goal}}</text>
+			<text class="txt" wx:if="{{habit.unit.length > 0}}">{{habit.unit}}</text>
 		</block>
 		<block wx:else>
 			<image class="icon" mode="widthFix" src="../../images/complete.png"></image>
 		</block>
 	</view>
+</view>
+<view class="editrow" wx:if="{{showEditRow}}">
+	<image class="editrowicon" mode="widthFix" src="/images/edit.png" bindtap="editHabit"></image>
+	<image class="editrowicon" mode="widthFix" src="/images/reset.png" bindtap="resetProgress"></image>
+	<image class="editrowicon" mode="widthFix" src="/images/delete.png" bindtap="deleteHabit"></image>
 </view>

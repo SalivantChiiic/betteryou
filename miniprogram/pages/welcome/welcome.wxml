@@ -1,0 +1,3 @@
+<view id="title" class="container">
+  {{locale.title}}
+</view>

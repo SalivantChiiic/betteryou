@@ -1,0 +1,5 @@
+<view class="tabwrapper">
+	<block wx:for="{{tabItems}}" wx:key="*this">
+		<view class="tabitem {{selectedIndex==index?'selected':''}}" bindtap="topBarClicked" data-index="{{index}}" style="width:{{itemWidth}}%">{{item}}</view>
+	</block>
+</view>

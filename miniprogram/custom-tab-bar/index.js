@@ -16,8 +16,6 @@ Component({
     }],
     uploadImgUrl: '/images/upload.png'
   },
-  attached() {
-  },
   methods: {
     switchTab(e) {
       if (this.data.selected != e.currentTarget.dataset.index) {

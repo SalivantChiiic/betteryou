@@ -1,4 +1,12 @@
 export default {
+  'welcome': {
+    'title': 'Better You'
+  },
+  'taskslider': {
+    'deleteConfirmContent': 'Are you sure to delete habit: ',
+    'confirmTxt': 'Delete',
+    'cancelTxt': 'Cancel'
+  },
   // index page
   'index': {
     'today': 'TODAY',

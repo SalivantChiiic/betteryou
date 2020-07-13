@@ -5,7 +5,7 @@ Page({
    * Page initial data
    */
   data: {
-
+    tabItems: ['111','222']
   },
 
   /**
@@ -23,4 +23,7 @@ Page({
     }
     app.checkIfNeedToShowJoinPage()
   },
+  onTopBarClicked(e) {
+    
+  }
 })

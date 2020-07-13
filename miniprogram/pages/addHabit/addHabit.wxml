@@ -3,26 +3,26 @@
 		<text class="largelabel">{{locale.name}}</text>
 	</view>
 	<view class="rowwrapper">
-		<input placeholder="{{locale.namePlaceHolder}}" bindinput="inputName"></input>
+		<input placeholder="{{locale.namePlaceHolder}}" bindinput="inputName" value="{{habitToSave.name}}"></input>
 	</view>
 	<view class="rowwrapper">
 		<text class="largelabel">{{locale.goal}}/{{locale.unit}}</text>
 	</view>
 	<view class="rowwrapper">
-		<input class="shortinput" placeholder="{{locale.goalPlaceHolder}}" bindinput="inputGoal"></input>
-		<input class="shortinput" placeholder="{{locale.unitPlaceHolder}}" bindinput="inputUnit"></input>
+		<input class="shortinput" placeholder="{{locale.goalPlaceHolder}}" bindinput="inputGoal" value="{{habitToSave.goal}}"></input>
+		<input class="shortinput" placeholder="{{locale.unitPlaceHolder}}" bindinput="inputUnit" value="{{habitToSave.unit}}"></input>
 	</view>
 	<view class="rowwrapper">
 		<text class="largelabel">{{locale.goalPeriod}}</text>
 	</view>
 	<view class="rowwrapper">
-		<buttonlist buttonList="{{goalPeriod}}" highlightColor="{{selectedColor}}" bind:buttonListClicked="updateGoalPeriod"></buttonlist>
+		<buttonlist buttonList="{{goalPeriod}}" highlightColor="{{selectedColor}}" bind:buttonListClicked="updateGoalPeriod" selectedButtons="{{goalPeriodSelectedButton}}"></buttonlist>
 	</view>
 	<view class="rowwrapper">
 		<text class="largelabel">{{locale.trackDays}}</text>
 	</view>
 	<view class="rowwrapper">
-		<buttonlist multiSelect compact buttonList="{{trackDays}}" highlightColor="{{selectedColor}}" bind:buttonListClicked="updateTrackDays"></buttonlist>
+		<buttonlist multiSelect compact buttonList="{{trackDays}}" highlightColor="{{selectedColor}}" bind:buttonListClicked="updateTrackDays" selectedButtons="{{habitToSave.trackDays}}"></buttonlist>
 	</view>
 	<view class="rowwrapper">
 		<text class="largelabel">{{locale.color}}</text>

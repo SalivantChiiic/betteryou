@@ -123,7 +123,7 @@ Page({
         value: app.globalData.locale.addHabit.private
       }
     ],
-    habitToCreate: {
+    habitToSave: {
       color: '#c1cbd7',
       goalPeriod: 'daily',
       trackDays: ['0', '1', '2', '3', '4', '5', '6'],
@@ -138,55 +138,77 @@ Page({
    */
   onLoad: function (options) {
     let randomIndex = Math.round(Math.random() * 10)
+    if (!!app.globalData.habitToEdit) {
+      let goalPeriodSelectedButton
+      switch (app.globalData.habitToEdit.goalPeriod) {
+        case "daily":
+          goalPeriodSelectedButton = [0]
+          break;
+        case "weekly":
+          goalPeriodSelectedButton = [1]
+          break;
+        case "monthly":
+          goalPeriodSelectedButton = [2]
+          break;
+        case "yearly":
+          goalPeriodSelectedButton = [3]
+          break;
+      }
+      this.setData({
+        goalPeriodSelectedButton: goalPeriodSelectedButton,
+        habitToSave: app.globalData.habitToEdit
+      })
+      app.globalData.habitToEdit = null
+    }
   },
   selectColor(e) {
     this.setData({
       selectedColor: e.currentTarget.dataset.color
     })
-    this.data.habitToCreate.color = this.data.selectedColor
+    this.data.habitToSave.color = this.data.selectedColor
   },
   selectIcon(e) {
     this.setData({
       selectedIcon: e.currentTarget.dataset.url
     })
-    this.data.habitToCreate.iconUrl = this.data.selectedIcon
+    this.data.habitToSave.iconUrl = this.data.selectedIcon
   },
   inputName(e) {
-    this.data.habitToCreate.name = e.detail.value
+    this.data.habitToSave.name = e.detail.value
   },
   inputGoal(e) {
-    this.data.habitToCreate.goal = e.detail.value
+    this.data.habitToSave.goal = e.detail.value
   },
   inputUnit(e) {
-    this.data.habitToCreate.unit = e.detail.value
+    this.data.habitToSave.unit = e.detail.value
   },
   updateGoalPeriod(e) {
-    this.data.habitToCreate.goalPeriod = e.detail.selectedItem
+    this.data.habitToSave.goalPeriod = e.detail.selectedItem
   },
   updateTrackDays(e) {
-    this.data.habitToCreate.trackDays = e.detail.selectedItems
+    this.data.habitToSave.trackDays = e.detail.selectedItems
   },
   inputMotivateNotes(e) {
-    this.data.habitToCreate.motivateNotes = e.detail.value
+    this.data.habitToSave.motivateNotes = e.detail.value
   },
   updatePrivacySetting(e) {
-    this.data.habitToCreate.privacySetting = e.detail.selectedItem
+    this.data.habitToSave.privacySetting = e.detail.selectedItem
   },
   saveHabit() {
-    if (!this.data.habitToCreate.createDate) {
-      this.data.habitToCreate.createDate = Date.now()
-      this.data.habitToCreate.openId = app.globalData.openId
-      this.data.habitToCreate.progresses = []
-      this.data.habitToCreate._id = Date.now().toString()
+    if (!this.data.habitToSave.createDate) {
+      this.data.habitToSave.createDate = Date.now()
+      this.data.habitToSave.openId = app.globalData.openId
+      this.data.habitToSave.progresses = []
+      this.data.habitToSave._id = Date.now().toString()
       let habits = wx.getStorageSync('habits')
-      habits.push(this.data.habitToCreate)
+      habits.push(this.data.habitToSave)
       wx.setStorage({
         data: habits,
         key: 'habits',
       })
       let db = wx.cloud.database()
       db.collection('UserHabit').add({
-        data: this.data.habitToCreate
+        data: this.data.habitToSave
       })
     }
     wx.navigateBack({

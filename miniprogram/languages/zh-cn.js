@@ -1,4 +1,12 @@
 export default {
+  'welcome': {
+    'title': '更好的你'
+  },
+  'taskslider': {
+    'deleteConfirmContent': '确认删除习惯:',
+    'confirmTxt': '删除',
+    'cancelTxt': '取消'
+  },
   // index page
   'index': {
     'today': '今天',
