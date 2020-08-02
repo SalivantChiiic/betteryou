@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "taskslider": "/components/taskslider/taskslider",
-    "datepicker": "/components/datepicker/datepicker"
+    "datepicker": "/components/datepicker/datepicker",
+    "toptips": "/components/toptips/toptips"
   },
   "navigationStyle": "custom"
 }

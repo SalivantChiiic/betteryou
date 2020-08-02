@@ -62,17 +62,15 @@ buttonlist {
 .icon{
   width: 60rpx;
   height: 60rpx;
-  margin-right: 60rpx;
+  margin-right: 30rpx;
   margin-bottom: 30rpx;
+  border-radius: 50%;
+  padding: 20rpx;
 }
 
 .selectedcolorbtn {
-  border: 3px solid #696969;
+  border: 4rpx solid #696969;
   box-sizing: border-box;
-}
-
-.selectedicon {
-  outline: 3px solid #696969;
 }
 
 longbutton {

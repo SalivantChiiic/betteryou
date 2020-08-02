@@ -1,0 +1,18 @@
+@import '/style/common.wxss';
+.toptips {
+  position: fixed;
+  top: 20rpx;
+  width: 90vw;
+  height: 80rpx;
+  left: 5vw;
+  border-radius: 15rpx;
+  opacity: 0;
+  background-color: #c1cbd7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--fontSizeFourteen);
+  font-family: Avenir;
+  font-weight: var(--regularFontWeight);
+  z-index: 5;
+}

@@ -1,0 +1,1 @@
+<view id="toptips" class="toptips" wx:if="{{!!tipContent}}" style="background-color:{{displayColor?displayColor:'#c1cbd7'}};">{{tipContent}}</view>

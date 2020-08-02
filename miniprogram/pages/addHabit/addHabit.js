@@ -7,8 +7,6 @@ Page({
    */
   data: {
     locale: app.globalData.locale.addHabit,
-    selectedColor: '#c1cbd7',
-    selectedIcon: '/images/1.png',
     colors: [
       '#c1cbd7',
       '#afb0b2',
@@ -139,39 +137,23 @@ Page({
   onLoad: function (options) {
     let randomIndex = Math.round(Math.random() * 10)
     if (!!app.globalData.habitToEdit) {
-      let goalPeriodSelectedButton
-      switch (app.globalData.habitToEdit.goalPeriod) {
-        case "daily":
-          goalPeriodSelectedButton = [0]
-          break;
-        case "weekly":
-          goalPeriodSelectedButton = [1]
-          break;
-        case "monthly":
-          goalPeriodSelectedButton = [2]
-          break;
-        case "yearly":
-          goalPeriodSelectedButton = [3]
-          break;
-      }
       this.setData({
-        goalPeriodSelectedButton: goalPeriodSelectedButton,
         habitToSave: app.globalData.habitToEdit
       })
       app.globalData.habitToEdit = null
     }
   },
   selectColor(e) {
+    this.data.habitToSave.color = e.currentTarget.dataset.color
     this.setData({
-      selectedColor: e.currentTarget.dataset.color
+      habitToSave: this.data.habitToSave
     })
-    this.data.habitToSave.color = this.data.selectedColor
   },
   selectIcon(e) {
+    this.data.habitToSave.iconUrl = e.currentTarget.dataset.url
     this.setData({
-      selectedIcon: e.currentTarget.dataset.url
+      habitToSave: this.data.habitToSave
     })
-    this.data.habitToSave.iconUrl = this.data.selectedIcon
   },
   inputName(e) {
     this.data.habitToSave.name = e.detail.value
@@ -195,22 +177,42 @@ Page({
     this.data.habitToSave.privacySetting = e.detail.selectedItem
   },
   saveHabit() {
+    let db = wx.cloud.database()
+    let habits = wx.getStorageSync('habits')
     if (!this.data.habitToSave.createDate) {
       this.data.habitToSave.createDate = Date.now()
       this.data.habitToSave.openId = app.globalData.openId
       this.data.habitToSave.progresses = []
       this.data.habitToSave._id = Date.now().toString()
-      let habits = wx.getStorageSync('habits')
       habits.push(this.data.habitToSave)
-      wx.setStorage({
-        data: habits,
-        key: 'habits',
-      })
-      let db = wx.cloud.database()
       db.collection('UserHabit').add({
         data: this.data.habitToSave
       })
+    } else {
+      db.collection('UserHabit').doc(this.data.habitToSave._id).update({
+        data: {
+          name: this.data.habitToSave.name,
+          goal: this.data.habitToSave.goal,
+          unit: this.data.habitToSave.unit,
+          goalPeriod: this.data.habitToSave.goalPeriod,
+          trackDays: this.data.habitToSave.trackDays,
+          color: this.data.habitToSave.color,
+          iconUrl: this.data.habitToSave.iconUrl,
+          motivateNotes: this.data.habitToSave.motivateNotes,
+          privacySetting: this.data.habitToSave.privacySetting
+        }
+      })
+      for (let i in habits) {
+        if (habits[i]._id == this.data.habitToSave._id) {
+          habits[i] = this.data.habitToSave
+          break
+        }
+      }
     }
+    wx.setStorage({
+      data: habits,
+      key: 'habits',
+    })
     wx.navigateBack({
       delta: 0,
     })

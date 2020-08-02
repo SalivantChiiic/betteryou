@@ -187,5 +187,9 @@ Page({
     this.calculateCurrentProgress(habits, this.data.selectedDate)
     wx.setStorageSync('habits', habits)
     this.syncHabitsStorageToServer()
+  },
+  showTip() {
+    let toptips = this.selectComponent('#toptips')
+    toptips.showTopTip(locale.)
   }
 })

@@ -13,3 +13,4 @@
 		<image class="addicon" mode="widthFix" src="../../images/add.png" bindtap="addHabit"></image>
 	</view>
 </view>
+<toptips id="toptips"/>

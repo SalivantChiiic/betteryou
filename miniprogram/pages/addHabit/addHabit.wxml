@@ -16,20 +16,20 @@
 		<text class="largelabel">{{locale.goalPeriod}}</text>
 	</view>
 	<view class="rowwrapper">
-		<buttonlist buttonList="{{goalPeriod}}" highlightColor="{{selectedColor}}" bind:buttonListClicked="updateGoalPeriod" selectedButtons="{{goalPeriodSelectedButton}}"></buttonlist>
+		<buttonlist buttonList="{{goalPeriod}}" highlightColor="{{habitToSave.color}}" bind:buttonListClicked="updateGoalPeriod" selectedButton="{{habitToSave.goalPeriod}}"></buttonlist>
 	</view>
 	<view class="rowwrapper">
 		<text class="largelabel">{{locale.trackDays}}</text>
 	</view>
 	<view class="rowwrapper">
-		<buttonlist multiSelect compact buttonList="{{trackDays}}" highlightColor="{{selectedColor}}" bind:buttonListClicked="updateTrackDays" selectedButtons="{{habitToSave.trackDays}}"></buttonlist>
+		<buttonlist multiSelect compact buttonList="{{trackDays}}" highlightColor="{{habitToSave.color}}" bind:buttonListClicked="updateTrackDays" selectedButtons="{{habitToSave.trackDays}}"></buttonlist>
 	</view>
 	<view class="rowwrapper">
 		<text class="largelabel">{{locale.color}}</text>
 	</view>
 	<view class="colorrow">
 		<block wx:for="{{colors}}" wx:key="*this">
-			<view class="colorbtn {{selectedColor==item?'selectedcolorbtn':''}}" style="background-color:{{item}}" data-color="{{item}}" bindtap="selectColor"></view>
+			<view class="colorbtn {{habitToSave.color==item?'selectedcolorbtn':''}}" style="background-color:{{item}}" data-color="{{item}}" bindtap="selectColor"></view>
 		</block>
 	</view>
 	<view class="rowwrapper">
@@ -37,7 +37,7 @@
 	</view>
 	<view class="colorrow">
 		<block wx:for="{{icons}}" wx:key="*this">
-			<image class="icon {{selectedIcon==item?'selectedicon':''}}" mode="widthFix" src="{{item}}" data-url="{{item}}" bindtap="selectIcon"></image>
+			<image class="icon" style="background-color:{{habitToSave.iconUrl==item?habitToSave.color:''}}" mode="widthFix" src="{{item}}" data-url="{{item}}" bindtap="selectIcon"></image>
 		</block>
 	</view>
 	<view class="rowwrapper">
@@ -50,7 +50,7 @@
 		<text class="largelabel">{{locale.isPrivate}}</text>
 	</view>
 	<view class="rowwrapper">
-		<buttonlist buttonList="{{privacySetting}}" highlightColor="{{selectedColor}}" bind:buttonListClicked="updatePrivacySetting"></buttonlist>
+		<buttonlist buttonList="{{privacySetting}}" highlightColor="{{habitToSave.color}}" bind:buttonListClicked="updatePrivacySetting" selectedButton="{{habitToSave.privacySetting}}"></buttonlist>
 	</view>
-	<longbutton color="{{selectedColor}}" text="{{locale.save}}" bindtap="saveHabit"></longbutton>
+	<longbutton color="{{habitToSave.color}}" text="{{locale.save}}" bindtap="saveHabit"></longbutton>
 </view>

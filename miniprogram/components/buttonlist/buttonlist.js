@@ -8,7 +8,8 @@ Component({
     multiSelect: Boolean,
     highlightColor: String,
     compact: Boolean,
-    selectedButtons: Array
+    selectedButtons: Array,
+    selectedButton: String
   },
 
   /**
@@ -24,12 +25,13 @@ Component({
     }
   },
   observers: {
-    'selectedButtons'() {
+    'selectedButtons, selectedButton'() {
       this.initializeComponent()
-    }
+    },
   },
   methods: {
     initializeComponent() {
+      this.data.buttonStates = []
       if (this.properties.multiSelect) {
         for (let i in this.properties.buttonList) {
           if (this.properties.selectedButtons.length == 0 || this.properties.selectedButtons.indexOf(i) >= 0) {
@@ -40,7 +42,7 @@ Component({
         }
       } else {
         for (let i in this.properties.buttonList) {
-          if (this.properties.selectedButtons.length == 0 && i == 0 || this.properties.selectedButtons[0] == i) {
+          if (!this.properties.selectedButton && i == 0 || this.properties.selectedButton == this.properties.buttonList[i].id) {
             this.data.buttonStates.push(true)
           } else {
             this.data.buttonStates.push(false)
